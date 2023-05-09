@@ -5,7 +5,11 @@
     position: sticky;
 }
 
-p.header__home.header__button {
+ul {
+    list-style-type: none
+}
+
+li.header__home.header__button {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
@@ -23,13 +27,14 @@ p.header__home.header__button {
     z-index: 1;
     align-items: center;
     max-width: 880px;
+    height: 80px;
 }
 
 .header__logo {
     width: 140px
 }
 
-p.header__link.header__button {
+li.header__link.header__button {
     background: transparent;
     color: #A9A9A9;
     font-weight: 400;
@@ -44,15 +49,22 @@ p.header__link.header__button {
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: nowrap;
-    align-items: center;
+    align-items: baseline;
     float: right;
     justify-content: space-between;
     gap: 42px;
+    margin: 0;
 }
 
 .header__button-image {
     padding-left: 20px;
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+    width: 17.41px;
+    height: 16px;
+}
+
+.header__button-image-dark {
+    padding-left: 20px;
     width: 17.41px;
     height: 16px;
 }
@@ -75,7 +87,7 @@ a.header__redirect-text {
     display: none;
 }
 
-p.header__link.header__button {
+li.header__link.header__button {
     background: transparent;
     color: #f9f9f9;
     font-weight: 400;
@@ -88,9 +100,61 @@ p.header__link.header__button {
     backdrop-filter: blur(4px);
     border-radius: 100px;
     padding: 12px 42px;
+    transition: all 0.3s ease-in-out;
 }
 
-p.header__link.header__button:hover {
+.header__button-dark {
+    background: transparent;
+    color: rgba(26, 27, 34, 1);
+    font-weight: 400;
+    font-size: 18px;
+    font-family: 'Inter';
+    font-style: normal;
+    float: right;
+    cursor: pointer;
+    border: 1px solid rgba(26, 27, 34, 1);
+    backdrop-filter: blur(4px);
+    border-radius: 100px;
+    padding: 12px 42px;
+}
+
+
+/* ! */
+
+a.header__link.header__button.li__active-white:hover {
+    color: rgba(232, 232, 232, 1);
+}
+
+.selected {
+    border-bottom: 3px solid white;
+    padding-bottom: 23px;
+}
+
+.selected-dark {
+    border-bottom: 3px solid rgba(26, 27, 34, 1);
+    padding-bottom: 23px;
+}
+
+.white-bg {
+    background-color: #FFFF;
+}
+
+.li__active-white {
+    color: #FFFF;
+    text-decoration: auto;
+}
+
+.li__active-dark {
+    color: #1A1B22;
+    text-decoration: auto;
+}
+
+li.header__home.header__button>a {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+li.header__link.header__button:hover {
     color: #9b9b9b;
     border: 1px solid #9b9b9b;
 }

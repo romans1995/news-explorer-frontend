@@ -4,6 +4,7 @@ footer.Footer {
     justify-content: space-around;
     align-items: center;
     background: #E5E5E5;
+    bottom: 0;
 }
 
 .Footer__div {

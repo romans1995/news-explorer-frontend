@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route,Navigate } from 'react-router-dom';
+import { Route, Navigate, Routes } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 const ProtectedRoute = ({ children, path }) => {
@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children, path }) => {
     console.log('loggedIn', loggedIn);
     return loggedIn ?(
         <Route path={path}>{children}</Route>
-    ) : <Navigate to="/signin" />
+    ) : <Navigate to="/" />
 };
 
 export default ProtectedRoute;
