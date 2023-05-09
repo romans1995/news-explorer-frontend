@@ -1,0 +1,130 @@
+.header {
+    border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+    background: rgba(196, 196, 196, 0.01);
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+    position: sticky;
+}
+
+p.header__home.header__button {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: #FFFFFF;
+    line-height: 24px;
+}
+
+.header_wrap {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(196, 196, 196, 0.01);
+    top: 0;
+    z-index: 1;
+    align-items: center;
+    max-width: 880px;
+}
+
+.header__logo {
+    width: 140px
+}
+
+p.header__link.header__button {
+    background: transparent;
+    color: #A9A9A9;
+    font-weight: 400;
+    font-size: 18px;
+    font-family: 'Inter';
+    font-style: normal;
+    float: right;
+    cursor: pointer;
+}
+
+.header__div {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    align-items: center;
+    float: right;
+    justify-content: space-between;
+    gap: 42px;
+}
+
+.header__button-image {
+    padding-left: 20px;
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+    width: 17.41px;
+    height: 16px;
+}
+
+a.header__redirect-text {
+    position: absolute;
+    width: 64px;
+    height: 22px;
+    top: 51px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    text-decoration: unset;
+}
+
+.header__navburger {
+    display: none;
+}
+
+p.header__link.header__button {
+    background: transparent;
+    color: #f9f9f9;
+    font-weight: 400;
+    font-size: 18px;
+    font-family: 'Inter';
+    font-style: normal;
+    float: right;
+    cursor: pointer;
+    border: 1px solid #D1D2D6;
+    backdrop-filter: blur(4px);
+    border-radius: 100px;
+    padding: 12px 42px;
+}
+
+p.header__link.header__button:hover {
+    color: #9b9b9b;
+    border: 1px solid #9b9b9b;
+}
+
+@media screen and (max-width: 565px) {
+    .header {
+        z-index: 2;
+        padding: 16px 0;
+        top: 0;
+    }
+    .header__div {
+        display: none;
+    }
+    .header__navburger {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+    }
+    .header__navburger>img {
+        height: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+    .header__navburger.open img.nav1 {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .header__navburger.open img.nav2 {
+        transform: rotate(-45deg);
+    }
+    .header_wrap {
+        padding: 0 20px;
+    }
+}
