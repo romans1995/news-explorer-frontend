@@ -34,7 +34,7 @@ function App() {
     <Header
     />
       <Routes>
-        {loggedIn ? <Route path="/saved-news" element={<SavedNews />} /> : <Route exact path="*" element={<Main />} />}
+        <Route path="/saved-news" element={<ProtectedRoute><SavedNews /></ProtectedRoute>} /> 
         <Route exact path="*" element={<Main />}/>
         < Route path="*" element= { <Navigate replace to="/"/> } />
       </Routes>
