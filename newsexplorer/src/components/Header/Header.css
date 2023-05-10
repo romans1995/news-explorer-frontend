@@ -121,6 +121,10 @@ li.header__link.header__button {
 
 /* ! */
 
+.dark {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
 a.header__link.header__button.li__active-white:hover {
     color: rgba(232, 232, 232, 1);
 }
@@ -142,16 +146,27 @@ a.header__link.header__button.li__active-white:hover {
 .li__active-white {
     color: #FFFF;
     text-decoration: auto;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 .li__active-dark {
     color: #1A1B22;
     text-decoration: auto;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
 }
 
 li.header__home.header__button>a {
     background-color: transparent;
     text-decoration: none;
+    color: #FFFFFF;
 }
 
 li.header__link.header__button:hover {

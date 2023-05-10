@@ -8,7 +8,6 @@ import { usePopup } from '../../contexts/PopupContext';
 import { useAuth } from '../../contexts/AuthContext';
 
 import exitImg from '../../images/icons/logout.svg'
-import exitImgdark from '../../images/icons/logout-dark.svg'
 
 function Header() {
     const [isHome, setIsHome] = useState(true);
@@ -26,10 +25,7 @@ function Header() {
             closeAllPopups();
         }
     };
-    const openSignin = () => {
-        openPopup('signin');
 
-    }
     useEffect(() => {
         location.pathname !== '/' ? setIsHome(false) : setIsHome(true);
         isHome ? liClass.forEach(li => (li.classList.add('li__active-white'))) : liClass.forEach(li => (li.classList.add('li__active-dark')));
@@ -42,7 +38,7 @@ function Header() {
                 <ul className="header__div">
                     {loggedIn ?
 
-                        <><li onClick={() => handleLogout()} className={isHome ? "header__link header__button" : "header__link header__button-dark"} >{user.firstName}<img className={isHome?"header__button-image":"header__button-image-dark"} src={exitImg}  alt="Log out" /></li>
+                        <><li onClick={() => handleLogout()} className={isHome ? "header__link header__button" : "header__link header__button-dark"} >{user.firstName}<img className={isHome ? "header__button-image" : "header__button-image-dark"} src={exitImg} alt="Log out" /></li>
                             <NavLink to="/saved-news" end className={isHome ? "header__link header__button li__active-white " : "header__link header__button selected-dark"}>saved news</NavLink>
                             <li><NavLink className={isHome ? "header__link header__button li__active-white selected" : "header__link header__button "} to="/" end>
                                 Home
@@ -56,7 +52,7 @@ function Header() {
                 </ul>
 
 
-                <div className={`header__navburger`} onClick={() => { openPopup('nav'); navBurgerChange() }}>
+                <div className={isHome ? `header__navburger` : "header__navburger dark"} onClick={() => { openPopup('nav'); navBurgerChange() }}>
                     <img className="nav1" src={nav1} alt="" />
                     <img className="nav2" src={nav2} alt="" />
                 </div>

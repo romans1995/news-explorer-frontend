@@ -18,6 +18,8 @@ import "../Navigation/Nav.css";
 import "../Signin/Signin.css";
 import "../PopupWithForm/PopupWithForm.css";
 import "../SavedNews/SavedNews.css";
+import"../NewsCard/NewsCard.css";
+import"../NewsCardList/NewsCardList.css";
 
 // import "../Preloader/preloader.css";
 
@@ -32,7 +34,7 @@ function App() {
     <Header
     />
       <Routes>
-        {loggedIn ? <Route path="/saved-news" element={<SavedNews />} /> : <Route exact path="/" element={<Main />} />}
+        {loggedIn ? <Route path="/saved-news" element={<SavedNews />} /> : <Route exact path="*" element={<Main />} />}
         <Route exact path="*" element={<Main />}/>
         < Route path="*" element= { <Navigate replace to="/"/> } />
       </Routes>

@@ -1,0 +1,110 @@
+article.NewsCard {
+    max-width: 400px;
+    border-radius: 10px;
+    border: 1px solid;
+    max-height: 576px
+}
+
+.NewsCard-img {
+    max-width: 400px;
+    height: 272px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.NewsCard-text-container {
+    width: 352px;
+    height: 88px;
+    overflow: hidden;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+p.NewsCard-text-date {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #B6BCBF;
+    margin: 20px 40px 0px 40px;
+}
+
+h3.NewsCard-text-title {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 30px;
+    color: #1A1B22;
+    margin: 16px 40px;
+}
+
+p.NewsCard-text-text {
+    margin: 0px 40px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: #1A1B22;
+}
+
+p.NewsCard-text-tags {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #B6BCBF;
+    margin: 40px;
+}
+
+button.NewsCard-img-delete {
+    background: #FFFFFF;
+    border-radius: 8px;
+    border: none;
+}
+
+button.NewsCard-img-delete>img:hover {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
+.NewsCard-img-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 24px;
+    padding-top: 24px;
+}
+
+button.NewsCard-img-tagBtn {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 8px 22px;
+    border: none;
+}
+
+@media screen and (max-width: 565px) {
+    .NewsCard-text-container {
+        width: 282px;
+    }
+    .NewsCardList__cards {
+        padding: 24px 16px;
+    }
+}

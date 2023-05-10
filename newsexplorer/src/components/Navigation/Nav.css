@@ -26,7 +26,7 @@
     line-height: 48px;
     background: #1A1B22;
     width: 100%;
-    padding-top: 50px;
+    padding-top: 100px;
     color: hsl(0, 0%, 100%);
 }
 
@@ -85,5 +85,19 @@ p.navMobile__home:hover {
     .navMobile__ul>p {
         padding-left: 16px;
         text-decoration: none
+    }
+    p.navMobile__ul-saved-articles>a {
+        text-decoration: auto;
+        color: #ffff;
+    }
+    .navMobile__ul-home>a .active {
+        text-decoration: none;
+        cursor: pointer;
+        color: #ffffff;
+    }
+    p.navMobile__ul-home>a {
+        text-decoration: none;
+        cursor: pointer;
+        color: #ffffff;
     }
 }

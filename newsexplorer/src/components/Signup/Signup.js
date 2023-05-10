@@ -88,7 +88,7 @@ const [userLoginInfo, setUserLoginInfo] = useState({
                 id="username"
                 className="popup__input login-form__input"
                 placeholder="user name"
-                value={userLoginInfo.userName}
+                defaultValue={userLoginInfo.userName||""}
                 onChange={handleChange}
                 required
             />
