@@ -2,6 +2,7 @@ import React from "react";
 import Signin from '../Signin/Signin';
 import Nav from '../Navigation/Nav';
 import Signup from '../Signup/Signup';
+import SuccessPopup from '../SuccessPopup/SuccessPopup';
 
 
 const Popups = ({ popupState }) => {
@@ -10,6 +11,7 @@ const Popups = ({ popupState }) => {
             <Signup popupState={popupState} />
             <Signin popupState={popupState} />
             <Nav popupState={popupState} />
+            <SuccessPopup />
         </>
     );
 };

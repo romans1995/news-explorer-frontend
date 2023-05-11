@@ -6,8 +6,9 @@ export const PopupControler = ({ children }) => {
     const [popupState, setPopupState] = useState({
         signin:false,
         signup:false,
-        nav: false
-    })
+        nav: false,
+        successPopup:false
+    });
 
     const openPopup = (popupName) => {
         setPopupState({
@@ -27,6 +28,7 @@ export const PopupControler = ({ children }) => {
             }
         }
         const closeOnClick = (evt) => {
+            console.log("closed")
             if (evt.target.classList.contains('popup_active')) {
                 closeAllPopups();
             }
@@ -37,7 +39,7 @@ export const PopupControler = ({ children }) => {
         return () =>
             document.removeEventListener('keydown', closeByEscape) && document.removeEventListener('click', closeOnClick);
 
-    }, []);
+    }, );
 
     return (
         <PopupContext.Provider value={{ popupState, setPopupState, openPopup, closeAllPopups }}>

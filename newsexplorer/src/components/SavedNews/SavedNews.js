@@ -31,7 +31,7 @@ const SavedNews = () => {
                 <h2 className='savedNews__h2'>{user.firstName},you have {data.length} saved articles</h2>
                 <p className='savedNews__keywords'>By keywords: <strong>{keywordSelect()}</strong></p>
             </div>
-            <div>
+            <div className='NewsCardList-container'>
                 <NewsCardList />
             </div>
         </div>

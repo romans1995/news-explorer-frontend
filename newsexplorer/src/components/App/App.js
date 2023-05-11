@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from '../Header/Header';
 
 import Main from '../Main/Main';
@@ -7,7 +7,7 @@ import Popups from "../Popups/Popups";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from "../SavedNews/SavedNews";
-import { useAuth } from '../../contexts/AuthContext';
+// import { useAuth } from '../../contexts/AuthContext';
 
 // css 
 import "../Header/Header.css";
@@ -20,15 +20,13 @@ import "../PopupWithForm/PopupWithForm.css";
 import "../SavedNews/SavedNews.css";
 import"../NewsCard/NewsCard.css";
 import"../NewsCardList/NewsCardList.css";
+import"../SuccessPopup/SuccessPopup.css";
 
 // import "../Preloader/preloader.css";
 
 
 function App() {
-  const { loggedIn } = useAuth();
-  useEffect(() =>{
-
-  },[])
+ 
   return (
     <div className= "app" >
     <Header

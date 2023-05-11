@@ -1,11 +1,7 @@
-import React,{useEffect} from "react";
+import React from "react";
 import './Popup.css';
 const Popup = ({  isOpen,onClose, name, title, children }) => {
-   useEffect(() =>{
-       console.log("Popup.js", isOpen);
-   }, [isOpen])
-    
-    return (
+ return (
         <div
             className={`popup ${name} ${isOpen ? "popup_active" : ""}`}
         >

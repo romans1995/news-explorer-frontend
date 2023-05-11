@@ -4,7 +4,7 @@ import { usePopup } from "../../contexts/PopupContext";
 
 
 const Signup = ({ isLoading }) => {
-    const { popupState, setPopupState } = usePopup();
+    const { popupState, setPopupState, openPopup } = usePopup();
 
 const [userLoginInfo, setUserLoginInfo] = useState({
         email: "",
@@ -13,10 +13,10 @@ const [userLoginInfo, setUserLoginInfo] = useState({
     });
 
     function handleSubmit(e) {
+        
         e.preventDefault();
-
+        
         // do something with the user login info
-        console.log(userLoginInfo);
 
         // reset the user login info
         setUserLoginInfo({
@@ -28,6 +28,7 @@ const [userLoginInfo, setUserLoginInfo] = useState({
         setPopupState({
             ...popupState,
             signup: false,
+            successPopup:true
         });
     }
 
@@ -46,6 +47,8 @@ const [userLoginInfo, setUserLoginInfo] = useState({
                     setPopupState({
                         ...popupState,
                         signup: false,
+                        
+                        
                     })
                 }
                 title="sign up"

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { usePopup } from "../../contexts/PopupContext";
 import { Navigate, NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -7,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 const Nav = () => {
     const elemntClass = document.getElementsByClassName("header__navburger");
     const { openPopup, popupState, closeAllPopups } = usePopup();
-    const { loggedIn, user, handleLogout } = useAuth();
+    const { loggedIn, handleLogout } = useAuth();
 
     const turnOffNav = () =>{
         popupState.nav = false;
