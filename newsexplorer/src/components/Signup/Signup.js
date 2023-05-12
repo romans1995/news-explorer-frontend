@@ -4,19 +4,16 @@ import { usePopup } from "../../contexts/PopupContext";
 
 
 const Signup = ({ isLoading }) => {
-    const { popupState, setPopupState, openPopup } = usePopup();
+    const { popupState, setPopupState } = usePopup();
 
-const [userLoginInfo, setUserLoginInfo] = useState({
+    const [userLoginInfo, setUserLoginInfo] = useState({
         email: "",
         password: "",
-        userName:""
+        userName: ""
     });
 
     function handleSubmit(e) {
-        
         e.preventDefault();
-        
-        // do something with the user login info
 
         // reset the user login info
         setUserLoginInfo({
@@ -28,7 +25,7 @@ const [userLoginInfo, setUserLoginInfo] = useState({
         setPopupState({
             ...popupState,
             signup: false,
-            successPopup:true
+            successPopup: true
         });
     }
 
@@ -41,47 +38,45 @@ const [userLoginInfo, setUserLoginInfo] = useState({
     };
 
     return (
-            <PopupWithForm
-                isOpen={popupState.signup}
-                onClose={() =>
-                    setPopupState({
-                        ...popupState,
-                        signup: false,
-                        
-                        
-                    })
-                }
-                title="sign up"
-                name="signup"
-                buttonText={`${isLoading ? "Connecting..." : "Connect"}`}
-                onSubmit={handleSubmit}
-            >
-                <label className="signin-label" htmlFor="email">
-                    Email
-                </label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="popup__input login-form__input"
-                    placeholder="Email"
-                    value={userLoginInfo.email}
-                    onChange={handleChange}
-                    required
-                />
-                <label className="signin-label" htmlFor="password">
-                    Password
-                </label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    className="popup__input login-form__input"
-                    placeholder="Password"
-                    value={userLoginInfo.password}
-                    onChange={handleChange}
-                    required
-                />
+        <PopupWithForm
+            isOpen={popupState.signup}
+            onClose={() =>
+                setPopupState({
+                    ...popupState,
+                    signup: false,
+                })
+            }
+            title="sign up"
+            name="signup"
+            buttonText={`${isLoading ? "Connecting..." : "sign up"}`}
+            onSubmit={handleSubmit}
+        >
+            <label className="signin-label" htmlFor="email">
+                Email
+            </label>
+            <input
+                type="email"
+                name="email"
+                id="email"
+                className="popup__input login-form__input"
+                placeholder="Email"
+                value={userLoginInfo.email}
+                onChange={handleChange}
+                required
+            />
+            <label className="signin-label" htmlFor="password">
+                Password
+            </label>
+            <input
+                type="password"
+                name="password"
+                id="password"
+                className="popup__input login-form__input"
+                placeholder="Password"
+                value={userLoginInfo.password}
+                onChange={handleChange}
+                required
+            />
             <label className="signin-label" htmlFor="username">
                 Username
             </label>
@@ -91,11 +86,11 @@ const [userLoginInfo, setUserLoginInfo] = useState({
                 id="username"
                 className="popup__input login-form__input"
                 placeholder="user name"
-                defaultValue={userLoginInfo.userName||""}
+                defaultValue={userLoginInfo.userName || ""}
                 onChange={handleChange}
                 required
             />
-            </PopupWithForm>
+        </PopupWithForm>
     );
 }
 export default Signup;

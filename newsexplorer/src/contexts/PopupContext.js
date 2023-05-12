@@ -28,7 +28,6 @@ export const PopupControler = ({ children }) => {
             }
         }
         const closeOnClick = (evt) => {
-            console.log("closed")
             if (evt.target.classList.contains('popup_active')) {
                 closeAllPopups();
             }

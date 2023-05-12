@@ -12,7 +12,6 @@ const Nav = () => {
         popupState.nav = false;
         elemntClass[0].classList.remove('open');
     }
-    
     return (
         <div className={`navMobile ${popupState.nav ? "nav_active" : ""}`}>
            
@@ -23,7 +22,6 @@ const Nav = () => {
                     <><p className="navMobile__ul-home"><a href="/" onClick={closeAllPopups}>Home</a></p><button className="navMobile__signin" onClick={() => { ; turnOffNav(); openPopup('signin'); } } elemnt={<Navigate replace to="/signin" />}>Sign in</button></>
 }
             </div>
-            
         </div>
     );
 }

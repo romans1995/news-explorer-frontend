@@ -21,6 +21,8 @@ import "../SavedNews/SavedNews.css";
 import"../NewsCard/NewsCard.css";
 import"../NewsCardList/NewsCardList.css";
 import"../SuccessPopup/SuccessPopup.css";
+import"../SearchForm/SearchForm.css";
+import '../NotFound/NotFound.css';
 
 // import "../Preloader/preloader.css";
 

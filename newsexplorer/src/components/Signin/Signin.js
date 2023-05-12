@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { usePopup } from "../../contexts/PopupContext";
 import { useAuth } from "../../contexts/AuthContext";
@@ -7,7 +7,7 @@ import { useAuth } from "../../contexts/AuthContext";
 
 const Signin = ({ isLoading }) => {
     const { popupState, setPopupState } = usePopup();
-    const { setLoggedIn, loggedIn } = useAuth();
+    const { setLoggedIn } = useAuth();
 
     const [userLoginInfo, setUserLoginInfo] = useState({
         email: "",
@@ -40,11 +40,6 @@ const Signin = ({ isLoading }) => {
             [name]: value,
         });
     };
-
-    useEffect(() => {
-        console.log("loggedIn", loggedIn);
-    }, [loggedIn]);
-
     return (
 
         <PopupWithForm
@@ -57,7 +52,7 @@ const Signin = ({ isLoading }) => {
             }
             title="sign in"
             name="signin"
-            buttonText={`${isLoading ? "Connecting..." : "Connect"}`}
+            buttonText={`${isLoading ? "Connecting..." : "Sign in"}`}
             onSubmit={handleSubmit}
         >
             <label className="signin-label" htmlFor="email">

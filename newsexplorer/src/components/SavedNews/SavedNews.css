@@ -27,7 +27,8 @@ p.savedNews__P {
 }
 
 .savedNews__h2 {
-    font-family: 'Roboto Slab';
+    font-family: 'Roboto-slab', Arial, Helvetica, sans-serif;
+    ;
     font-style: normal;
     font-weight: 400;
     font-size: 40px;

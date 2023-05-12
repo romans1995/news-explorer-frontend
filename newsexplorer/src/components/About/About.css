@@ -30,18 +30,23 @@
     }
     
     @media screen and (max-width: 974px) {
-        .about {
-            flex-direction: column;
+        .about__text {
+            padding-top: 16px;
+        }
+        .about_image {
+            border-radius: 1000px;
+            width: 232px;
+            height: 232px;
         }
     }
     
     @media screen and (max-width: 565px) {
+        .about {
+            flex-direction: column;
+        }
         .about_image {
             width: 272px;
             height: 272px;
-        }
-        .about__text-h1 {
-            text-align: center;
         }
         .about__text>p {
             margin: 0;

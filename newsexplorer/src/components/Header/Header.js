@@ -37,9 +37,8 @@ function Header() {
                 <img src={isHome ? logo : blackLogo} alt="Logo" className="header__logo" />
                 <ul className="header__div">
                     {loggedIn ?
-
                         <><li onClick={() => handleLogout()} className={isHome ? "header__link header__button" : "header__link header__button-dark"} >{user.firstName}<img className={isHome ? "header__button-image" : "header__button-image-dark"} src={exitImg} alt="Log out" /></li>
-                            <NavLink to="/saved-news" end className={isHome ? "header__link header__button li__active-white " : "header__link header__button selected-dark"}>saved news</NavLink>
+                            <li><NavLink to="/saved-news" end className={isHome ? "header__link header__button li__active-white " : "header__link header__button selected-dark"}>saved news</NavLink></li>
                             <li><NavLink className={isHome ? "header__link header__button li__active-white selected" : "header__link header__button "} to="/" end>
                                 Home
                             </NavLink></li></>
@@ -50,11 +49,9 @@ function Header() {
                             </NavLink></li></>}
 
                 </ul>
-
-
                 <div className={isHome ? `header__navburger` : "header__navburger dark"} onClick={() => { openPopup('nav'); navBurgerChange() }}>
-                    <img className="nav1" src={nav1} alt="" />
-                    <img className="nav2" src={nav2} alt="" />
+                    <img className="navFirst" src={nav1} alt="" />
+                    <img className="navSecond" src={nav2} alt="" />
                 </div>
             </div>
         </header>

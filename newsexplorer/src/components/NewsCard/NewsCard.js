@@ -1,6 +1,8 @@
 import trashIcon from '../../images/trash.svg'
+import saveIcon from '../../images/save.svg'
+import { useAuth } from '../../contexts/AuthContext';
 const NewsCard = ({card}) => {
-  
+    const {  loggedIn } = useAuth();
 return(
     <article className="NewsCard">
         <div className="NewsCard-img" 
@@ -8,7 +10,7 @@ return(
         >
             <div className="NewsCard-img-container">
                 <button className="NewsCard-img-tagBtn">{card.keyword}</button>
-                <button className="NewsCard-img-delete"><img src={trashIcon} alt="Remove from saved" /></button>
+                {loggedIn ? <button className="NewsCard-img-icon NewsCard-img-delete"><img src={trashIcon} alt="Remove from saved" /></button> : <button className=" NewsCard-img-icon NewsCard-img-save"><img src={saveIcon} alt="sace" /></button>}
             </div>
             
             </div> 
