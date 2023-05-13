@@ -3,11 +3,11 @@ footer.footer {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background: #E5E5E5;
-    position: sticky;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    z-index: 10;
 }
 
 .footer__div {
@@ -54,6 +54,9 @@ p.footer__copyrights {
         justify-content: space-around;
         align-items: center;
         flex-wrap: wrap;
+        width: 100%;
+        position: relative;
+        bottom: 0;
     }
     .footer__copyrights {
         font-size: 16px;
@@ -69,16 +72,5 @@ p.footer__copyrights {
         display: flex;
         align-items: baseline;
         gap: 120px;
-    }
-    .search__title {
-        font-size: 36px;
-        line-height: 40px;
-    }
-    .search_pargrap {
-        padding: 0px 16px;
-        margin-bottom: 122px;
-    }
-    .search__input {
-        margin-bottom: 0px;
     }
 }

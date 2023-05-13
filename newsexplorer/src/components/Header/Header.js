@@ -1,18 +1,18 @@
-import logo from "../../images/logo.png";
-import blackLogo from "../../images/blackLogo.svg";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { Navigate, NavLink } from 'react-router-dom';
+// images
 import nav1 from "../../images/header/Rectangle1.png"
 import nav2 from "../../images/header/Rectangle2.png"
-import { Navigate, NavLink, useLocation } from 'react-router-dom';
+import exitImg from '../../images/icons/logout.svg'
+import blackLogo from "../../images/blackLogo.svg";
+import logo from "../../images/logo.png";
+// context
 import { usePopup } from '../../contexts/PopupContext';
 import { useAuth } from '../../contexts/AuthContext';
-
-import exitImg from '../../images/icons/logout.svg'
+import { useHome } from '../../contexts/HomeContext';
 
 function Header() {
-    const [isHome, setIsHome] = useState(true);
-    const location = useLocation();
-
+    const { isHome,  location } = useHome();
     const { openPopup, closeAllPopups } = usePopup();
     const elemntClass = document.getElementsByClassName("header__navburger");
     const liClass = document.querySelectorAll(".header__button");
@@ -27,9 +27,7 @@ function Header() {
     };
 
     useEffect(() => {
-        location.pathname !== '/' ? setIsHome(false) : setIsHome(true);
         isHome ? liClass.forEach(li => (li.classList.add('li__active-white'))) : liClass.forEach(li => (li.classList.add('li__active-dark')));
-        console.log(liClass)
     }, [location, isHome, liClass]);
     return (
         <header className={isHome ? "header" : "header white-bg "} >

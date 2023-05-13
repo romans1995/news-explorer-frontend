@@ -36,7 +36,7 @@ const SearchForm = () =>{
    }, [searchTerm])
        
 return(
-
+<>
     <section className="search"
         style={{
             backgroundImage: `url(${mainHeaderImg})`,
@@ -52,18 +52,24 @@ return(
             <input id="search" name="search" onChange={handleInputChange} className="search__input-text" type="text" autoComplete="true" />
             <button onClick={handleSearch} className="search__input-button">Search</button>
         </form>
-
-        {searchTerm.length === 0 ? <div className="search__results" style={{display:"none"}}></div> :
+        </section>
+        <section>
+        {searchTerm.length === 0 ?
+         <div className="search__results" style={{display:"none"}}></div>
+          :
          <div className="search__results">
+         <h3 className="search__results-title">Search results</h3>
+                <div className="search__results-container">
             {searchResults.length !== 0 ? searchResults.map(card =>{
                 return <div key={card._id} className="NewsCardList__cards-listItem">
                     <NewsCard card={card} />
                 </div>
             }) : (handleSearchClicked && <div className="NewsCardList__cards-listItem"><NotFound /></div>)} 
                 {!showMore && filteredArr.length > 3 && searchResults.length !== 0 ?<button onClick={onClickShowmore} className="NewsCardList__button">Show more</button>:""}
-        </div>}
+                </div> </div>}
         
-    </section>
+        </section>
+    </>
 )
 }
 export default SearchForm;

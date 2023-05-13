@@ -20,7 +20,6 @@ export const PopupControler = ({ children }) => {
         setPopupState(
             Object.keys(popupState).every((key) => (popupState[key] = false))
         );
-    console.log('popupState:', popupState);
     useEffect(() => {
         const closeByEscape = (e) => {
             if (e.key === 'Escape') {

@@ -7,11 +7,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { PopupControler } from "../src/contexts/PopupContext";
 import AuthProvider from "../src/contexts/AuthContext";
 import ArticlesContextProvider from "../src/contexts/ArticlesContext";
+import { HomeControler } from './contexts/HomeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    <HomeControler>
       <AuthProvider>
         <PopupControler>
           <ArticlesContextProvider>
@@ -19,6 +21,7 @@ root.render(
           </ArticlesContextProvider>
         </PopupControler>
       </AuthProvider>
+      </HomeControler>
     </BrowserRouter>
   </React.StrictMode>
 );

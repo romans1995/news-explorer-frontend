@@ -5,14 +5,13 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [loggedIn, setLoggedIn] = useState(false);
+    
     const [user, setUser] = useState({
         email: 'roman123@gmail.com',
         firstName: 'Roman',
         userName: 'Stavinsky',
     });
-
     const history = useNavigate();
-
     const handleLogout = () => {
         setLoggedIn(false);
         setUser({});
@@ -21,7 +20,7 @@ const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ loggedIn, setLoggedIn, user, setUser, handleLogout }}>
+            value={{ loggedIn, setLoggedIn, user, setUser, handleLogout}}>
             {children}
         </AuthContext.Provider>
     );

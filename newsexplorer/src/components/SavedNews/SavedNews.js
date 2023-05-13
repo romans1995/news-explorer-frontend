@@ -28,7 +28,7 @@ const SavedNews = () => {
         <div className="savedNews">
             <div className='savedNews__text'>
                 <p className="savedNews__P">saved articles</p>
-                <h2 className='savedNews__h2'>{user.firstName},you have {data.length} saved articles</h2>
+                <h2 className='savedNews__hsecond'>{user.firstName},you have {data.length} saved articles</h2>
                 <p className='savedNews__keywords'>By keywords: <strong>{keywordSelect()}</strong></p>
             </div>
             <div className='NewsCardList-container'>

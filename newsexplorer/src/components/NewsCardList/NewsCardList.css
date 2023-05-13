@@ -12,21 +12,19 @@
 
 @media screen and (max-width: 1110px) {
     .NewsCardList__cards {
-        grid-template-columns: 0fr 0fr;
+        grid-template-columns: 0fr 0fr 0fr;
     }
 }
 
 @media screen and (max-width: 740px) {
     .NewsCardList__cards {
-        grid-template-columns: 0fr;
+        grid-template-columns: 0fr 0fr;
     }
 }
 
 @media screen and (max-width: 565px) {
-    article.NewsCard {
-        max-width: auto;
-        border-radius: 10px;
-        border: 1px solid;
-        max-height: auto;
+    .NewsCardList__cards {
+        grid-template-columns: 0fr;
+        padding: 62px 16px;
     }
 }
