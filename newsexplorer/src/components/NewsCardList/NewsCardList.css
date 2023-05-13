@@ -23,6 +23,15 @@ button.NewsCardList__button {
     cursor: pointer;
     width: 288px;
     height: 64px;
+    border: none;
+}
+
+.NewsCardList__button:hover {
+    background-color: #d3d3d3;
+}
+
+.NewsCardList__cards-listItem {
+    margin: 0 auto;
 }
 
 @media screen and (max-width: 1110px) {

@@ -3,7 +3,7 @@ const About = () =>{
 
     return(
         <section className="about">
-            <img className="about_image" src={meImg} alt="Roman is amsterdam" />
+            <img className="about__image" src={meImg} alt="Roman in amsterdam" />
             <div className="about__text">
                 <h2 className = "about__title">About the author</h2>
                 <p>Hey there 🖐</p>

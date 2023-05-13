@@ -1,6 +1,5 @@
 import React from "react";
 import Header from '../Header/Header';
-
 import Main from '../Main/Main';
 import Footer from "../Footer/Footer";
 import Popups from "../Popups/Popups";
@@ -23,6 +22,8 @@ import"../NewsCardList/NewsCardList.css";
 import"../SuccessPopup/SuccessPopup.css";
 import"../SearchForm/SearchForm.css";
 import '../NotFound/NotFound.css';
+import '../SearchResolts/SearchResults.css';
+import '../Preloader/preloader.css';
 
 // import "../Preloader/preloader.css";
 

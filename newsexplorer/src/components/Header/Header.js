@@ -27,17 +27,17 @@ function Header() {
     };
 
     useEffect(() => {
-        isHome ? liClass.forEach(li => (li.classList.add('li__active-white'))) : liClass.forEach(li => (li.classList.add('li__active-dark')));
+        isHome ? liClass.forEach(li => (li.classList.add('header__active-white'))) : liClass.forEach(li => (li.classList.add('li__active-dark')));
     }, [location, isHome, liClass]);
     return (
         <header className={isHome ? "header" : "header white-bg "} >
-            <div className="header_wrap">
+            <div className="header__wrap">
                 <img src={isHome ? logo : blackLogo} alt="Logo" className="header__logo" />
                 <ul className="header__div">
                     {loggedIn ?
                         <><li onClick={() => handleLogout()} className={isHome ? "header__link header__button" : "header__link header__button-dark"} >{user.firstName}<img className={isHome ? "header__button-image" : "header__button-image-dark"} src={exitImg} alt="Log out" /></li>
-                            <li><NavLink to="/saved-news" end className={isHome ? "header__link header__button li__active-white " : "header__link header__button selected-dark"}>saved news</NavLink></li>
-                            <li><NavLink className={isHome ? "header__link header__button li__active-white selected" : "header__link header__button "} to="/" end>
+                            <li><NavLink to="/saved-news" end className={isHome ? "header__link header__button header__active-white " : "header__link header__button selected-dark"}>saved news</NavLink></li>
+                            <li><NavLink className={isHome ? "header__link header__button header__active-white selected" : "header__link header__button "} to="/" end>
                                 Home
                             </NavLink></li></>
                         :

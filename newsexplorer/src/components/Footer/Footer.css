@@ -21,7 +21,7 @@ footer.footer {
     display: flex;
 }
 
-.footer_wrap {
+.footer__wrap {
     display: flex;
     align-items: center;
     gap: 40px;
@@ -68,7 +68,7 @@ p.footer__copyrights {
         flex-direction: column-reverse;
         gap: 0px;
     }
-    .footer_wrap {
+    .footer__wrap {
         display: flex;
         align-items: baseline;
         gap: 120px;

@@ -1,15 +1,17 @@
 import mainHeaderImg from "../../images/main.jpg";
 import {data} from "../../data";
 import React, { useEffect, useState } from "react";
-import NewsCard  from "../NewsCard/NewsCard";
-import NotFound from "../NotFound/NotFound";
+import SearchResolts from "../SearchResolts/SearchResolts";
+import Preloader from "../Preloader/preloader";
 
 const SearchForm = () =>{
     const [searchTerm, setSearchTerm] = useState("");
     const [handleSearchClicked, setHandleSearchClicked] = useState(false);
     const [showMore, setShowMore] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
+    
     // filteredArr is all the result 
     const filteredArr = data.filter(subArr => Object.values(subArr).some(val => val === searchTerm));
     let filter = "";
@@ -28,12 +30,18 @@ const SearchForm = () =>{
     const handleSearch = (event) =>{
        event.preventDefault();
         filter = filteredArr.length > 3 && showMore === false ? filteredArr.slice(0, 3) : filteredArr;
-        setHandleSearchClicked(true)
-       setSearchResults(filter)
-   }
-   useEffect(()=>{
+        setHandleSearchClicked(true);
+       setSearchResults(filter);
+        setIsLoading(true);
 
-   }, [searchTerm])
+   }
+    useEffect(() => {
+        let timer;
+        if (isLoading) {
+            timer = setTimeout(() => setIsLoading(false), 3000);
+        }
+        return () => clearTimeout(timer);
+    }, [isLoading]);
        
 return(
 <>
@@ -53,22 +61,18 @@ return(
             <button onClick={handleSearch} className="search__input-button">Search</button>
         </form>
         </section>
-        <section>
-        {searchTerm.length === 0 ?
-         <div className="search__results" style={{display:"none"}}></div>
-          :
-         <div className="search__results">
-         <h3 className="search__results-title">Search results</h3>
-                <div className="search__results-container">
-            {searchResults.length !== 0 ? searchResults.map(card =>{
-                return <div key={card._id} className="NewsCardList__cards-listItem">
-                    <NewsCard card={card} />
-                </div>
-            }) : (handleSearchClicked && <div className="NewsCardList__cards-listItem"><NotFound /></div>)} 
-                {!showMore && filteredArr.length > 3 && searchResults.length !== 0 ?<button onClick={onClickShowmore} className="NewsCardList__button">Show more</button>:""}
-                </div> </div>}
         
-        </section>
+        {isLoading ? <Preloader /> :<SearchResolts
+         showMore={showMore}
+          onClickShowmore={onClickShowmore}
+           searchResults={searchResults}
+            handleSearchClicked={handleSearchClicked}
+            filteredArr={filteredArr}
+            searchTerm={searchTerm}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+           />}
+    
     </>
 )
 }

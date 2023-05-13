@@ -1,6 +1,7 @@
 .not-found {
     background-color: rgba(245, 246, 247, 1);
-    padding: 80px 16px;
+    padding: 40px 16px;
+    width: 180px;
 }
 
 .not-found__container {
@@ -24,12 +25,14 @@
 .not-found__text {
     margin-block-end: 0;
     margin-block-start: 0;
-    color: rgba(182, 188, 191, 1);
+    font-family: 'Roboto', Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #B6BCBF;
 }
 
 
 /* makes sure that the content in center  */
-
-.NewsCardList__cards-listItem {
-    margin: 0 auto;
-}
