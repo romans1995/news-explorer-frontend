@@ -79,7 +79,11 @@ button.NewsCard-img-icon {
 }
 
 button.NewsCard-img-icon>img:hover {
-    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+    filter: none
+}
+
+button.NewsCard-img-icon>img {
+    filter: invert(40%) sepia(100%) saturate(0%) hue-rotate(86deg) brightness(102%) contrast(102%);
 }
 
 .NewsCard-img-container {
