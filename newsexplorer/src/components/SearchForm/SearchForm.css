@@ -46,6 +46,7 @@
 }
 
 .search__input-button {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;
     background: #2F71E5;
     box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
     border-radius: 100px;
@@ -62,21 +63,6 @@
     padding: 100px 0;
     display: grid;
     justify-content: space-around;
-}
-
-button.NewsCardList__button {
-    background: #FFFFFF;
-    border-radius: 80px;
-    font-family: 'Roboto', Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 24px;
-    font-style: normal;
-    grid-column: 2 / 3;
-    cursor: pointer;
-    width: 288px;
-    height: 64px;
 }
 
 button.NewsCardList__button:hover {
@@ -102,6 +88,10 @@ button.NewsCardList__button:hover {
     grid-gap: 16px;
     justify-content: center;
     margin: 0
+}
+
+.about__text>p {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;
 }
 
 @media screen and (max-width: 749px) {

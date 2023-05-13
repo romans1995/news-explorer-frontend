@@ -10,6 +10,21 @@
     padding: 62px 102px;
 }
 
+button.NewsCardList__button {
+    background: #FFFFFF;
+    border-radius: 80px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    font-style: normal;
+    grid-column: 2 / 3;
+    cursor: pointer;
+    width: 288px;
+    height: 64px;
+}
+
 @media screen and (max-width: 1110px) {
     .NewsCardList__cards {
         grid-template-columns: 0fr 0fr 0fr;
