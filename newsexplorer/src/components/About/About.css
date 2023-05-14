@@ -45,12 +45,13 @@
 @media screen and (max-width: 629px) {
     .about {
         flex-direction: column;
+        gap: 24px;
     }
     .about__text>p {
         margin: 0;
     }
     .about__text {
-        padding: 16px;
+        padding: 0 16px;
     }
     .about__image {
         width: 272px;
