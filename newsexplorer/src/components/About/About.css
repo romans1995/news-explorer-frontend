@@ -32,19 +32,19 @@
     margin-block-start: 0;
 }
 
-@media screen and (max-width: 974px) {
+@media screen and (max-width: 769px) {
     .about__text {
         padding-top: 16px;
-    }
-}
-
-@media screen and (max-width: 565px) {
-    .about {
-        flex-direction: column;
     }
     .about__title {
         padding-bottom: 16px;
         font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 629px) {
+    .about {
+        flex-direction: column;
     }
     .about__text>p {
         margin: 0;
