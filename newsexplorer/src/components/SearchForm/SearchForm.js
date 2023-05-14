@@ -58,7 +58,7 @@ return(
         }
         }>
         <h1 className="search__title">What's going on in the world?</h1>
-        <p className="search_pargrap ">Find the latest news on any topic and save them in your personal account.</p>
+        <p className="search__pargrap ">Find the latest news on any topic and save them in your personal account.</p>
         <form className="search__input">
                 <input id="search" name="search" onChange={handleInputChange} className="search__input-text" type="text" autoComplete="true"  />
             <button onClick={handleSearch} className="search__input-button">Search</button>

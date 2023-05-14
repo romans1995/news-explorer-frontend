@@ -21,7 +21,8 @@ button.NewsCardList__button {
     font-style: normal;
     grid-column: 2 / 3;
     cursor: pointer;
-    width: 288px;
+    max-width: 288px;
+    padding: 0 50px;
     height: 64px;
     border: none;
 }

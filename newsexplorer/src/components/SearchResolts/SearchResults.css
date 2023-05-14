@@ -35,7 +35,7 @@
         padding: 24px 0;
         display: grid;
         grid-template-columns: repeat(3, 0fr);
-        grid-column-gap: 0px;
+        gap: 16px;
         justify-items: center;
     }
 }
