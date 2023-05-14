@@ -84,6 +84,7 @@ button.NewsCard-img-icon>img:hover {
 
 button.NewsCard-img-icon>img {
     filter: invert(40%) sepia(100%) saturate(0%) hue-rotate(86deg) brightness(102%) contrast(102%);
+    cursor: pointer;
 }
 
 .NewsCard-img-container {

@@ -65,7 +65,7 @@ return(
         </form>
         </section>
         
-       <SearchResolts
+        {isLoading ? <Preloader/> :<SearchResolts
          showMore={showMore}
           onClickShowmore={onClickShowmore}
            searchResults={searchResults}
@@ -74,8 +74,7 @@ return(
             searchTerm={searchTerm}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-           />
-    
+           />}
     </>
 )
 }
