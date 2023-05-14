@@ -25,7 +25,7 @@ const SavedNews = () => {
         }
     };
     return (
-        <div className="savedNews">
+        <main className="savedNews">
             <div className='savedNews__text'>
                 <p className="savedNews__P">saved articles</p>
                 <h2 className='savedNews__hsecond'>{user.firstName},you have {data.length} saved articles</h2>
@@ -34,7 +34,7 @@ const SavedNews = () => {
             <div className='NewsCardList-container'>
                 <NewsCardList />
             </div>
-        </div>
+        </main>
     );
 }
 

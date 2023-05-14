@@ -20,7 +20,7 @@
     margin: 0;
 }
 
-.search_pargrap {
+.search__pargrap {
     font-family: 'Roboto', Arial, Helvetica, sans-serif, Arial, Helvetica, sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -176,7 +176,7 @@ button.NewsCardList__button:hover {
         line-height: 40px;
         padding: 160px 18px 16px 18px;
     }
-    .search_pargrap {
+    .search__pargrap {
         padding: 0px 16px;
         margin-bottom: 122px;
     }
