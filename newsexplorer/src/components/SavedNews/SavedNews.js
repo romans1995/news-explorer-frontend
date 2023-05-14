@@ -26,14 +26,14 @@ const SavedNews = () => {
     };
     return (
         <main className="savedNews">
-            <div className='savedNews__text'>
+            <section className='savedNews__text'>
                 <p className="savedNews__P">saved articles</p>
                 <h2 className='savedNews__hsecond'>{user.firstName},you have {data.length} saved articles</h2>
                 <p className='savedNews__keywords'>By keywords: <strong>{keywordSelect()}</strong></p>
-            </div>
-            <div className='NewsCardList-container'>
+            </section>
+            <section className='NewsCardList-container'>
                 <NewsCardList />
-            </div>
+            </section>
         </main>
     );
 }
