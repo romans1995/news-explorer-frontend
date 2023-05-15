@@ -1,20 +1,22 @@
 import mainHeaderImg from "../../images/main.jpg";
 import {data} from "../../data";
+import {useArticles} from '../../contexts/ArticlesContext';
 import React, { useEffect, useState } from "react";
 import SearchResolts from "../SearchResolts/SearchResolts";
 import Preloader from "../Preloader/preloader";
 
 const SearchForm = () =>{
-    const [searchTerm, setSearchTerm] = useState("");
-    const [handleSearchClicked, setHandleSearchClicked] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("hello ,its me");
+    const [handleSearchClicked, setHandleSearchClicked] = useState(true);
     const [showMore, setShowMore] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    
+    const api = useArticles();
     // filteredArr is all the result 
     const filteredArr = data.filter(subArr => Object.values(subArr).some(val => val === searchTerm));
-    let filter = "";
+    let filter = filteredArr.length > 3 && showMore === false ? filteredArr.slice(0, 3) : filteredArr;
+    // let filter = "";
     
     const handleInputChange = (event) => {
         event.preventDefault();
@@ -29,19 +31,15 @@ const SearchForm = () =>{
    }
     const handleSearch = (event) =>{
        event.preventDefault();
-        filter = filteredArr.length > 3 && showMore === false ? filteredArr.slice(0, 3) : filteredArr;
+        // filter = filteredArr.length > 3 && showMore === false ? filteredArr.slice(0, 3) : filteredArr;
         setHandleSearchClicked(true);
        setSearchResults(filter);
         setIsLoading(true);
 
    }
     useEffect(() => {
-        let timer;
-        if (isLoading) {
-            timer = setTimeout(() => setIsLoading(false), 3000);
-        }
-        return () => clearTimeout(timer);
-    }, [isLoading]);
+        console.log(api.getInitalArticles(searchTerm))
+    }, [api, searchTerm]);
        
 return(
 <>
@@ -55,14 +53,14 @@ return(
         }
         }>
         <h1 className="search__title">What's going on in the world?</h1>
-        <p className="search_pargrap ">Find the latest news on any topic and save them in your personal account.</p>
+        <p className="search__pargrap ">Find the latest news on any topic and save them in your personal account.</p>
         <form className="search__input">
-            <input id="search" name="search" onChange={handleInputChange} className="search__input-text" type="text" autoComplete="true" />
+                <input id="search" name="search" onChange={handleInputChange} className="search__input-text" type="text" autoComplete="true" placeholder="Enter topic"  />
             <button onClick={handleSearch} className="search__input-button">Search</button>
         </form>
         </section>
         
-        {isLoading ? <Preloader /> :<SearchResolts
+        {isLoading ? <Preloader/> :<SearchResolts
          showMore={showMore}
           onClickShowmore={onClickShowmore}
            searchResults={searchResults}
@@ -72,7 +70,6 @@ return(
             isLoading={isLoading}
             setIsLoading={setIsLoading}
            />}
-    
     </>
 )
 }

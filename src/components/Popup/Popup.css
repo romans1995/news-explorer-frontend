@@ -46,7 +46,7 @@
         box-sizing: border-box;
     }
     
-    .popup_active {
+    .popup__active {
         visibility: visible;
         opacity: 1;
         z-index: 10;

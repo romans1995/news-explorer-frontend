@@ -10,10 +10,15 @@ footer.footer {
     z-index: 10;
 }
 
-.footer__div {
+ul.footer__div {
     display: flex;
     flex-direction: row;
     gap: 40px;
+}
+
+ul.footer__div>li>a {
+    text-decoration: auto;
+    color: #1A1B22;
 }
 
 .footer__imgs {
@@ -63,14 +68,15 @@ p.footer__copyrights {
         margin-top: 38px;
         margin-bottom: 22px;
     }
-    .footer__div {
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 0px;
+    ul.footer__div {
+        flex-direction: column;
+        gap: 40px;
+        -webkit-text-decoration: auto;
+        text-decoration: auto;
     }
     .footer__wrap {
         display: flex;
         align-items: baseline;
-        gap: 120px;
+        gap: 50px;
     }
 }

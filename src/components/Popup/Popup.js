@@ -3,7 +3,7 @@ import './Popup.css';
 const Popup = ({  isOpen,onClose, name, title, children }) => {
  return (
         <div
-            className={`popup ${name} ${isOpen ? "popup_active" : ""}`}
+            className={`popup ${name} ${isOpen ? "popup__active" : ""}`}
         >
             <div className="popup__container">
                 <button
