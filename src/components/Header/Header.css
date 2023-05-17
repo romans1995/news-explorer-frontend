@@ -176,6 +176,9 @@ li.header__link.header__button:hover {
 }
 
 @media screen and (max-width: 903px) {
+    li.header__link.header__button {
+        padding: 12px 22px;
+    }
     .header__wrap {
         gap: 0px;
     }

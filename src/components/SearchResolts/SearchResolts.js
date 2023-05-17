@@ -17,7 +17,7 @@ const SearchResolts = (props) =>{
                     <div className="searchResult__container">
                         {props.searchResults.length !== 0 ? props.searchResults.map((card,key) => {
                             console.log("key",key , card)
-                            return <div key={key + idUnq} className="searchResult__cards-listItem">
+                            return <div id={key + idUnq} key={key + idUnq} className="searchResult__cards-listItem">
                                 <NewsCard card={card} />
                             </div>
                         }) : props.handleSearchClicked && <div className="searchResult__cards-listItem"><NotFound /></div>}

@@ -6,7 +6,8 @@ import Popups from "../Popups/Popups";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from "../SavedNews/SavedNews";
-// import { useAuth } from '../../contexts/AuthContext';
+import { signIn, signUp, getSavedArticles } from '../../utils/MainApi';
+
 
 // css 
 import "../Header/Header.css";
@@ -29,18 +30,21 @@ import '../Preloader/preloader.css';
 
 
 function App() {
+  
  
   return (
     <div className= "app" >
     <Header
     />
       <Routes>
-        <Route path="/saved-news" element={<ProtectedRoute><SavedNews /></ProtectedRoute>} /> 
+        <Route path="/saved-news" element={<ProtectedRoute><SavedNews getSavedArticles={getSavedArticles} /></ProtectedRoute>} /> 
         <Route exact path="*" element={<Main />}/>
         < Route path="*" element= { <Navigate replace to="/"/> } />
       </Routes>
       <Footer/>
       <Popups
+        signIn={signIn}
+        signUp={signUp}
       /> 
     </div>
 

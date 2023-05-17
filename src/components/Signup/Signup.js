@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { usePopup } from "../../contexts/PopupContext";
 
 
-const Signup = ({ isLoading }) => {
+const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
     const { popupState, setPopupState } = usePopup();
 
     const [userLoginInfo, setUserLoginInfo] = useState({
@@ -14,19 +14,8 @@ const Signup = ({ isLoading }) => {
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        // reset the user login info
-        setUserLoginInfo({
-            email: "",
-            password: "",
-        });
-
-        // close the signup popup
-        setPopupState({
-            ...popupState,
-            signup: false,
-            successPopup: true
-        });
+        const { email, password, username } = userLoginInfo;
+        handleRegister(email, password, username);
     }
 
     const handleChange = (e) => {
@@ -37,59 +26,48 @@ const Signup = ({ isLoading }) => {
         });
     };
 
-    return (
-        <PopupWithForm
-            isOpen={popupState.signup}
-            onClose={() =>
-                setPopupState({
-                    ...popupState,
-                    signup: false,
-                })
-            }
-            title="sign up"
-            name="signup"
-            buttonText={`${isLoading ? "Connecting..." : "sign up"}`}
-            onSubmit={handleSubmit}
-        >
-            <label className="signin-label" htmlFor="email">
-                Email
-            </label>
-            <input
-                type="email"
-                name="email"
-                id="email"
-                className="popup__input login-form__input"
-                placeholder="Email"
-                value={userLoginInfo.email}
-                onChange={handleChange}
-                required
-            />
-            <label className="signin-label" htmlFor="password">
-                Password
-            </label>
-            <input
-                type="password"
-                name="password"
-                id="password"
-                className="popup__input login-form__input"
-                placeholder="Password"
-                value={userLoginInfo.password}
-                onChange={handleChange}
-                required
-            />
-            <label className="signin-label" htmlFor="username">
-                Username
-            </label>
-            <input
-                type="text"
-                name="username"
-                id="username"
-                className="popup__input login-form__input"
-                placeholder="user name"
-                defaultValue={userLoginInfo.userName || ""}
-                onChange={handleChange}
-                required
-            />
+    return ( <PopupWithForm isOpen = { popupState.signup }
+        onClose = {
+            () =>
+            setPopupState({
+                ...popupState,
+                signup: false,
+            })
+        }
+        title = "sign up"
+        name = "signup"
+        buttonText = { `${isLoading ? "Connecting..." : "sign up"}` }
+        onSubmit = { handleSubmit } >
+        < label className = "signin-label"
+        htmlFor = "email" >
+        Email </label> <input type = "email"
+        name = "email"
+        id = "email"
+        className = "popup__input login-form__input"
+        placeholder = "Email"
+        value = { userLoginInfo.email }
+        onChange = { handleChange }
+        required />
+        <label className = "signin-label"
+        htmlFor = "password" >
+        Password </label> <input type = "password"
+        name = "password"
+        id = "password"
+        className = "popup__input login-form__input"
+        placeholder = "Password"
+        value = { userLoginInfo.password }
+        onChange = { handleChange }
+        required />
+        <label className = "signin-label"
+        htmlFor = "username" >
+        Username </label> <input type = "text"
+        name = "username"
+        id = "username"
+        className = "popup__input login-form__input"
+        placeholder = "user name"
+        defaultValue = { userLoginInfo.userName || "" }
+        onChange = { handleChange }
+        required />
         </PopupWithForm>
     );
 }

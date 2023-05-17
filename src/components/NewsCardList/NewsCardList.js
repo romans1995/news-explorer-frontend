@@ -1,20 +1,20 @@
-import { useArticles } from "../../contexts/ArticlesContext";
+// import { useArticles } from "../../contexts/ArticlesContext";
 import NewsCard from "../NewsCard/NewsCard";
-import Preloader from '../Preloader/preloader';
 
-const NewsCardList = () => {
-    const { data } = useArticles();
-    return(
+const NewsCardList = ({ userArticles }) => {
+    return (
         <div className="NewsCardList">
             <div className="NewsCardList__cards">
-                {data.map(card =>(
-                    <div key={card._id} className="NewsCardList__cards-listItem">
-                        {card ? <NewsCard card={card} /> : <Preloader />}
-                    </div>
-                ))}
+                {userArticles === [] ? 
+                    <p>Sorry, you haven't saved any articles</p>
+                    : userArticles.map(card => (
+                        <div key={card._id} className="NewsCardList__cards-listItem">
+                         <NewsCard card={card} />
+                        </div>))
+                    }
             </div>
         </div>
     );
-}
+};
 
 export default NewsCardList;

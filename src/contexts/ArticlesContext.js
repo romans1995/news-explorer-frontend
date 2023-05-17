@@ -1,4 +1,5 @@
 import {api} from '../utils/NewsApi';
+import { saveArticle } from '../utils/MainApi';
 const { createContext, useContext } = require('react');
 
 const ArticlesContext = createContext();
@@ -8,7 +9,7 @@ const ArticlesContext = createContext();
 //provider
 const ArticlesContextProvider = ({ children }) => {
     return (
-        <ArticlesContext.Provider value={api }>
+        <ArticlesContext.Provider value={{api ,saveArticle}}>
             {children}
         </ArticlesContext.Provider>
     );

@@ -2,7 +2,7 @@ article.NewsCard {
     max-width: 400px;
     border-radius: 10px;
     border: 1px solid;
-    max-height: 576px;
+    height: 576px;
     background-color: #ffff;
 }
 
@@ -12,6 +12,7 @@ article.NewsCard {
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
+    background-position-x: center;
 }
 
 .NewsCard-text-container {
@@ -22,6 +23,8 @@ article.NewsCard {
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 p.NewsCard-text-date {
@@ -45,6 +48,8 @@ h3.NewsCard-text-title {
     line-height: 30px;
     color: #1A1B22;
     margin: 16px 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 p.NewsCard-text-text {
@@ -55,11 +60,12 @@ p.NewsCard-text-text {
     font-size: 16px;
     line-height: 22px;
     color: #1A1B22;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 p.NewsCard-text-tags {
     font-family: 'Roboto-slab', Arial, Helvetica, sans-serif;
-    ;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -67,7 +73,10 @@ p.NewsCard-text-tags {
     letter-spacing: 0.4px;
     text-transform: uppercase;
     color: #B6BCBF;
-    margin: 40px;
+    color: #B6BCBF;
+    margin-left: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 button.NewsCard-img-icon {
@@ -136,9 +145,12 @@ button.news-card__tootltip {
     h3.NewsCard-text-title {
         font-size: 22px;
         line-height: 24px;
+        max-height: 53px;
+        margin: 16px 5px;
     }
     p.NewsCard-text-text {
         max-width: 192px;
+        margin-left: 5px;
     }
     button.news-card__tootltip {
         left: 55px;
@@ -155,5 +167,8 @@ button.news-card__tootltip {
     }
     article.NewsCard {
         max-width: 288px;
+    }
+    p.NewsCard-text-tags {
+        margin-left: 5px;
     }
 }
