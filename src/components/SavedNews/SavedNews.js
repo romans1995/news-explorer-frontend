@@ -13,8 +13,12 @@ const SavedNews = (props) => {
 
     useEffect(() => {
         if (isHome) {
-            newLocal();
-            keywordSelect()
+            newLocal().then(response =>{
+                setUserArticles(response);
+                setArticlesLength(response.data.length || "0");
+            }).then(keywordSelect).catch((error) => {
+                    console.log(error);
+                });
         }
 
     }, [isHome, userArticles]);
@@ -22,18 +26,15 @@ const SavedNews = (props) => {
     const newLocal = async () => {
         try {
             const articles = await props.getSavedArticles(token);
-            console.log(articles, "articles");
-            setUserArticles(articles);
-            setArticlesLength(articles.data.length || "0");
+            return articles;
 
         } catch {
             return (err) => { console.log(err) }
         }
     }
-    const keywordSelect = async () => {
-        try{
-            console.log("userArticles", userArticles);
-            const keyW = userArticles ? [] : userArticles.data.map((card) => card.keyword);
+    const keywordSelect = () => {
+            if (userArticles.data){
+                const keyW = userArticles.data.map((card) => card.keyword);
             let uniqKeywords = [];
             for (let i = 0; i < keyW.length; i++) {
                 if (keyW[0] === keyW[i] && uniqKeywords.includes(keyW[i])) {
@@ -43,34 +44,26 @@ const SavedNews = (props) => {
                 }
             }
             if (uniqKeywords.length > 3) {
-                return `<p>${uniqKeywords[0]}, ${uniqKeywords[1]}, and ${uniqKeywords.length - 2
-                    } others</p>`;
+                return `${uniqKeywords[0]}, ${uniqKeywords[1]}, and ${uniqKeywords.length - 2
+                    } others`;
             } else {
                 const keywordElements = uniqKeywords.map((keyword) => {
                     return keyword;
                 });
                 return keywordElements;
+             }
+            }else{
+                console.log("this", userArticles)
+                return "None"
             }
-        }catch{
-            return err=>console.log(err)
-        }
             
     }  
 
-
-
-    useEffect(() => {
-        if (isHome) {
-            newLocal();
-            keywordSelect()
-        }
-
-    }, [isHome, userArticles]);
     return (
         <main className="savedNews">
             <section className='savedNews__text'>
                 <p className="savedNews__P">saved articles</p>
-                {!isHome && userArticles !== [] && <><h2 className='savedNews__hsecond'>{user.firstName},you have {articlesLength} saved articles</h2><p className='savedNews__keywords'>By keywords: <strong>{keywordSelect}</strong></p></>}
+                {!isHome && userArticles !== [] && <><h2 className='savedNews__hsecond'>{user.firstName},you have {articlesLength} saved articles</h2><p className='savedNews__keywords'>By keywords: <strong>{keywordSelect()}</strong></p></>}
             </section>
             <section className='NewsCardList-container'>
                 <NewsCardList userArticles={userArticles.data} />
