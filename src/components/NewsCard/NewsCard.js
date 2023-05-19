@@ -4,88 +4,91 @@ import saveIcon from '../../images/save.svg';
 import savedIcon from '../../images/saved.svg';
 import { useAuth } from '../../contexts/AuthContext';
 import { useArticles } from '../../contexts/ArticlesContext';
+import { useHome } from '../../contexts/HomeContext';
+
 const changeDate = (apiDate) => {
     const date = new Date(apiDate);
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
-
     const formattedDate = `${day}.${month}.${year}`;
     return formattedDate;
 }
-const NewsCard = (card, { userArticles }) => {
+
+const NewsCard = ({ card, userArticles, setUserArticles, handleDeleteArticleFunc, articlesLength } ) => {
     const [showToolTip, setShowToolTip] = React.useState(false);
     const [savedArticle, setsavedArticle] = React.useState(false);
-    const { loggedIn, isHome,token } = useAuth();
+    const { loggedIn,token,user } = useAuth();
+    const { isHome } = useHome()
     const [myDifiedArticle] = React.useState({
-        title: card.card.title,
-        keyword:card.card.source?.name,
-        text: card.card.description,
-        date: changeDate(card.card.publishedAt),
-        source: card.card.source?.id ? card.card.source.id : card.card.source?.name,
-        image: card.card.urlToImage,
-        link: card.card.url
+        title: card.title,
+        keyword:card.source?.name,
+        text: card.description,
+        date: changeDate(card.publishedAt),
+        source: card.source?.id ? card.source.id : card.source?.name,
+        image: card.urlToImage,
+        link: card.url,
+        
 
     });
+   
     const api = useArticles();
-    const onHoverMessage = () => {
+    const onHoverMessage = (e) => {
+        e.preventDefault();
         setShowToolTip(true)
     }
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (e) => {
+        e.preventDefault();
         setShowToolTip(false)
     }
-    
-    
-    useEffect(()=>{
-        if(isHome){
-            const saveArticleFunc = async () => {
-                try {
-                    const article = await api.saveArticle(myDifiedArticle, token);
-                    console.log("article", article)
-                    if (article.ok) {
-                        console.log("success")
-                        setsavedArticle(true)
-                    } else {
-                        console.log(`Error: ${Object.values(article)} - ${article.statusText}`);
-                        const errorResponse = await article.json();
-                        console.log("Error response:", errorResponse);
-                    }
-                } catch (err) {
-                    console.log(err);
-                }
-            }
+    const saveArticleFunc = async () => {
+        try {
+            await api.saveArticle(myDifiedArticle, token).then(
+                console.log("success")
+               
+            );
+            
+           
+        } catch (err) {
+            console.log(err);
         }
-        
-    },[api, isHome, myDifiedArticle, token])
+    }
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        // Call the delete function passed from the parent component
+        await handleDeleteArticleFunc(card);
+    };
+
+    useEffect(()=>{
+        console.log("are you in the home page ?",isHome)
+    }, [isHome, userArticles, articlesLength])
 
     return (
         <article className="NewsCard" >
             <div className="NewsCard-img"
                 style={{
-                    backgroundImage: `url(${card.card.urlToImage ? card.card.urlToImage : card.card.image})`
+                    backgroundImage: `url(${card.urlToImage ? card.urlToImage : card.image})`
                 }}
             >
                 <div className="NewsCard-img-container">
-                    <button className="NewsCard-img-tagBtn">{card.card.source.name || card.card.keyword}</button>
-                    {loggedIn && isHome ? <button className="NewsCard-img-icon NewsCard-img-delete"><img src={trashIcon} alt="Remove from saved" onMouseEnter={onHoverMessage} onMouseLeave={handleMouseLeave} /></button>
-                        : <button className=" NewsCard-img-icon NewsCard-img-save"><img src={savedArticle ? savedIcon : saveIcon} alt="save" title={loggedIn ? "Save article" : "please loggin to save articles"} onMouseEnter={onHoverMessage} onMouseLeave={handleMouseLeave}  disabled = {!loggedIn} /></button>}
+                    <button className="NewsCard-img-tagBtn">{card.source.name || card.keyword}</button>
+                    {loggedIn && isHome ? <button className="NewsCard-img-icon NewsCard-img-delete"><img src={saveIcon} alt="Remove from saved" onMouseEnter={onHoverMessage} onMouseLeave={handleMouseLeave} onClick={saveArticleFunc} disabled={!loggedIn} /></button>
+                        : <button className=" NewsCard-img-icon NewsCard-img-save"><img src={trashIcon} alt="save" title="delete Article" onMouseEnter={onHoverMessage} onMouseLeave={handleMouseLeave} onClick={handleDelete} /></button>}
                 </div>
-                {showToolTip && (loggedIn && !savedArticle ?
+                {showToolTip && (loggedIn && !isHome ?
                     <button className="news-card__tootltip">
-                        Save article
-                    </button> : <button className="news-card__tootltip">
-                        Sign in to save articles
-                    </button>
+                        Remove Article
+                    </button> : loggedIn && savedArticle
                 )}
             </div>
             <div className="NewsCard-text">
-                <p className="NewsCard-text-date">{changeDate(card.card.publishedAt ? card.card.publishedAt : card.card.date)}</p>
-                <h3 className="NewsCard-text-title">{card.card.title}</h3>
+                <p className="NewsCard-text-date">{changeDate(card.publishedAt ? card.publishedAt : card.date)}</p>
+                <h3 className="NewsCard-text-title">{card.title}</h3>
                 <div className="NewsCard-text-container">
-                    <p className="NewsCard-text-text">{card.card.description ? card.card.description : card.card.text}</p>
+                    <p className="NewsCard-text-text">{card.description ? card.description : card.text}</p>
                 </div>
-                <p className="NewsCard-text-tags">{card.card.author}</p>
+                <p className="NewsCard-text-tags">{card.author}</p>
             </div>
         </article>
     )

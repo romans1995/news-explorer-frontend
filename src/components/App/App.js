@@ -6,7 +6,7 @@ import Popups from "../Popups/Popups";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from "../SavedNews/SavedNews";
-import { signIn, signUp, getSavedArticles } from '../../utils/MainApi';
+import { signIn, signUp } from '../../utils/MainApi';
 
 
 // css 
@@ -37,7 +37,7 @@ function App() {
     <Header
     />
       <Routes>
-        <Route path="/saved-news" element={<ProtectedRoute><SavedNews getSavedArticles={getSavedArticles} /></ProtectedRoute>} /> 
+        <Route path="/saved-news" element={<ProtectedRoute><SavedNews /></ProtectedRoute>} /> 
         <Route exact path="*" element={<Main />}/>
         < Route path="*" element= { <Navigate replace to="/"/> } />
       </Routes>

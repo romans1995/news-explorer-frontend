@@ -38,6 +38,17 @@ export const saveArticle = (article, token) => {
         body: JSON.stringify(article)
     });
 };
+
+export const deleteArticle = (id) => {
+    return customFetch(`${BASE_URL}/articles/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+};
 // return fetch(url, headers).then(res => res.ok ? res.json() : Promise.reject(res.statusText));
 
 export const signUp = (email, password, name) => {

@@ -12,8 +12,10 @@ const AuthProvider = ({ children }) => {
         email: '',
         firstName: '',
         userName: '',
+        id:""
     });
     const history = useNavigate();
+   
     
     const handleLogout = () => {
         setLoggedIn(false);
@@ -26,12 +28,12 @@ const AuthProvider = ({ children }) => {
             checkTocken(token).then(res => {
                 if (res._id) {
                     setLoggedIn(true);
-                    setUser({email:res.email,firstName:res.name})
-                    history.push('/saved-news');
+                    setUser({email:res.email,firstName:res.name,id:res._id})
+                    
                 }
             }).catch((err) => {
                 console.log(err);
-                history.push('/')
+                history('/');
                 setLoggedIn(false);
             })
         }
