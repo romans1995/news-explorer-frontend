@@ -1,12 +1,12 @@
 import mainHeaderImg from "../../images/main.jpg";
 import { useArticles } from '../../contexts/ArticlesContext';
-import React, { useEffect, useState,useRef } from "react";
+import React, {  useState,useRef } from "react";
 import SearchResolts from "../SearchResolts/SearchResolts";
 import Preloader from "../Preloader/preloader";
 
 const SearchForm = () => {
     const [searchTerm, setSearchTerm] = useState("");
-    const [handleSearchClicked, setHandleSearchClicked] = useState(true);
+    const [handleSearchClicked] = useState(true);
     const [showMore, setShowMore] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
     const [allResolts, setAllResolts] = useState([]);

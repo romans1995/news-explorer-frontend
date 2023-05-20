@@ -11,8 +11,8 @@ const Popups = ({ signIn, signUp }) => {
     
     const { popupState, setPopupState } = usePopup();
     const { setLoggedIn, setToken, checkTocken } = useAuth();
-    const [tooltipStatus, setTooltipStatus] = useState(false);
-    const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+    const [ setTooltipStatus] = useState(false);
+    const [ setIsInfoTooltipOpen] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
 
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHome } from '../../contexts/HomeContext';
 import { useArticles } from '../../contexts/ArticlesContext'
@@ -12,32 +12,9 @@ const SavedNews = (props) => {
     const [articlesLength, setArticlesLength] = useState(0)
     const  api  = useArticles();
 
-    useEffect(() => {
-        if (isHome) {
-            newLocal().then(response => {
-                setUserArticles(response);
-                setArticlesLength(response.data.length || "0");
-            }).then(keywordSelect).catch((error) => {
-                    console.log(error);
-                });
-            setArticlesLength(userArticles.data?.length || userArticles.length);
-        }
-        
-
-    }, [userArticles, articlesLength]);
-
-    const newLocal = async () => {
-        try {
-            const articles = await api.getSavedArticles(localStorage.token);
-            return articles;
-           
-
-        } catch {
-            return (err) => { console.log(err) }
-        }
-    }
+    
     const keywordSelect = () => {
-        if ( userArticles){
+        if (userArticles) {
             const keyW = userArticles.data ? userArticles.data.map((card) => card.keyword) : userArticles.map((card) => card.keyword);
             let uniqKeywords = [];
             for (let i = 0; i < keyW.length; i++) {
@@ -52,14 +29,15 @@ const SavedNews = (props) => {
                     } others`;
             } else {
                 const keywordElements = uniqKeywords.map((keyword) => {
-                    return keyword+" " ;
+                    return keyword + " ";
                 });
-                return keywordElements+" ";
-             }
-            }else{
-                return "None"
-            }  
+                return keywordElements + " ";
+            }
+        } else {
+            return "None"
+        }
     }
+
     const handleDeleteArticleFunc = async (article) => {
         try {
             await api.deleteArticle(article._id).then((newArticle)=>{
@@ -76,6 +54,30 @@ const SavedNews = (props) => {
             console.log(err);
         }
     };
+    useEffect(() => {
+        const newLocal = async () => {
+            try {
+                const articles = await api.getSavedArticles(localStorage.token);
+                return articles;
+
+
+            } catch {
+                return (err) => { console.log(err) }
+            }
+        }
+        
+        if (isHome) {
+            newLocal().then(response => {
+                setUserArticles(response);
+                setArticlesLength(response.data.length || "0");
+            }).then(keywordSelect).catch((error) => {
+                console.log(error);
+            });
+            setArticlesLength(userArticles.data?.length || userArticles.length);
+        }
+
+
+    },[api, isHome, userArticles, userArticles.data?.length, userArticles.length]);
 
     return (
         <main className="savedNews">

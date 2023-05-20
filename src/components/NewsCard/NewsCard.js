@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import trashIcon from '../../images/trash.svg';
 import saveIcon from '../../images/save.svg';
-import savedIcon from '../../images/saved.svg';
+// import savedIcon from '../../images/saved.svg';
 import { useAuth } from '../../contexts/AuthContext';
 import { useArticles } from '../../contexts/ArticlesContext';
 import { useHome } from '../../contexts/HomeContext';

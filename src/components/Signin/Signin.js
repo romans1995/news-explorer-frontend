@@ -4,7 +4,7 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 const Signin = ({ isLoading, handleLogin, popupState, setPopupState, isFormValid, setIsFormValid }) => {
     
-    const [valledError, setValidError] = useState("")
+   
     const [userLoginInfo, setUserLoginInfo] = useState({
         email: "",
         password: "",
@@ -61,8 +61,10 @@ const Signin = ({ isLoading, handleLogin, popupState, setPopupState, isFormValid
     useEffect(() => {
         if ( validationForUserPassword !== "" || validationForUserEmail !== "") {
             setIsFormValid(false)
+        }else{
+            setIsFormValid(true)
         }
-    }, [])
+    })
 
     return (
 

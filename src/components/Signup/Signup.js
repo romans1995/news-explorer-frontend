@@ -54,6 +54,7 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen, isFormValid, set
 
             if (!isNameValid) {
                 setValidationForUserName("Name can't be empty");
+                setIsFormValid(false);
             } else {
                 setValidationForUserPassword(""); // Clear the validation message
             }
@@ -67,8 +68,10 @@ setPopupState({
         useEffect(()=>{
             if (validationForUserName !== "" || validationForUserPassword !== "" || validationForUserEmail !== ""){
                 setIsFormValid(false)
+            }else{
+                setIsFormValid(true);
             }
-        }, [ setIsFormValid])
+        })
 
     return ( <PopupWithForm
         isFormValid={isFormValid}
