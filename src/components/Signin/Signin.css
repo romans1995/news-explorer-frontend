@@ -9,3 +9,19 @@
     margin-bottom: 9px;
     margin-top: 9px;
 }
+
+*:disabled {
+    background-color: dimgrey;
+    color: linen;
+    opacity: 1;
+}
+
+p.popup__input.login-form__input-vakidation {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    border-bottom: none;
+}

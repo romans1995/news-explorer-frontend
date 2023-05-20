@@ -17,8 +17,7 @@ const changeDate = (apiDate) => {
 
 const NewsCard = ({ card, userArticles, setUserArticles, handleDeleteArticleFunc, articlesLength } ) => {
     const [showToolTip, setShowToolTip] = React.useState(false);
-    const [savedArticle, setsavedArticle] = React.useState(false);
-    const { loggedIn,token,user } = useAuth();
+    const { loggedIn } = useAuth();
     const { isHome } = useHome()
     const [myDifiedArticle] = React.useState({
         title: card.title,
@@ -28,10 +27,8 @@ const NewsCard = ({ card, userArticles, setUserArticles, handleDeleteArticleFunc
         source: card.source?.id ? card.source.id : card.source?.name,
         image: card.urlToImage,
         link: card.url,
-        
-
     });
-   
+   const token = localStorage.getItem('token');
     const api = useArticles();
     const onHoverMessage = (e) => {
         e.preventDefault();
@@ -44,12 +41,7 @@ const NewsCard = ({ card, userArticles, setUserArticles, handleDeleteArticleFunc
     }
     const saveArticleFunc = async () => {
         try {
-            await api.saveArticle(myDifiedArticle, token).then(
-                console.log("success")
-               
-            );
-            
-           
+            await api.saveArticle(myDifiedArticle, token);
         } catch (err) {
             console.log(err);
         }
@@ -59,27 +51,51 @@ const NewsCard = ({ card, userArticles, setUserArticles, handleDeleteArticleFunc
         // Call the delete function passed from the parent component
         await handleDeleteArticleFunc(card);
     };
+    const handleArticleClick = (e) => {
+           // Check if a button or its child element was clicked
+        const isButtonClicked = e.target.closest("button");
+
+        if (!isButtonClicked) {
+            window.open(card.url, "_blank"); // Redirect to the URL
+        }
+    };
 
     useEffect(()=>{
-        console.log("are you in the home page ?",isHome)
     }, [isHome, userArticles, articlesLength])
 
     return (
-        <article className="NewsCard" >
-            <div className="NewsCard-img"
+        <article className="NewsCard" onClick={handleArticleClick} >
+            <div className="NewsCard-img" 
                 style={{
                     backgroundImage: `url(${card.urlToImage ? card.urlToImage : card.image})`
                 }}
             >
                 <div className="NewsCard-img-container">
                     <button className="NewsCard-img-tagBtn">{card.source.name || card.keyword}</button>
-                    {loggedIn && isHome ? <button className="NewsCard-img-icon NewsCard-img-delete"><img src={saveIcon} alt="Remove from saved" onMouseEnter={onHoverMessage} onMouseLeave={handleMouseLeave} onClick={saveArticleFunc} disabled={!loggedIn} /></button>
+                    {isHome ? <button className="NewsCard-img-icon NewsCard-img-delete"><img src={saveIcon}
+                     alt="Remove from saved"
+                      onMouseEnter={onHoverMessage}
+                       onMouseLeave={handleMouseLeave}
+                        onClick={saveArticleFunc}
+                        disabled={!loggedIn} /></button>
                         : <button className=" NewsCard-img-icon NewsCard-img-save"><img src={trashIcon} alt="save" title="delete Article" onMouseEnter={onHoverMessage} onMouseLeave={handleMouseLeave} onClick={handleDelete} /></button>}
                 </div>
-                {showToolTip && (loggedIn && !isHome ?
-                    <button className="news-card__tootltip">
-                        Remove Article
-                    </button> : loggedIn && savedArticle
+                {showToolTip && (
+                    loggedIn ? (
+                        isHome ? (
+                            <button className="news-card__tootltip">
+                                Save Article
+                            </button>
+                        ) : (
+                            <button className="news-card__tootltip">
+                                Remove Article
+                            </button>
+                        )
+                    ) : (
+                        <button className="news-card__tootltip">
+                            Please Log In
+                        </button>
+                    )
                 )}
             </div>
             <div className="NewsCard-text">

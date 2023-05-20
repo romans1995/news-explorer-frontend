@@ -27,7 +27,6 @@ export const getSavedArticles = (token) => {
     })
 };
 export const saveArticle = (article, token) => {
-    console.log(article)
     return customFetch(`${BASE_URL}/articles`, {
         method: "POST",
         headers: {

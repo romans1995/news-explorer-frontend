@@ -12,11 +12,11 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useHome } from '../../contexts/HomeContext';
 
 function Header() {
-    const { isHome,  location } = useHome();
+    const { isHome, location } = useHome();
     const { openPopup, closeAllPopups } = usePopup();
     const elemntClass = document.getElementsByClassName("header__navburger");
     const liClass = document.querySelectorAll(".header__button");
-    const { loggedIn, user, handleLogout } = useAuth();
+    const { loggedIn, currentUser, handleLogout } = useAuth();
     const navBurgerChange = () => {
         if (!elemntClass[0].classList.contains('open')) {
             elemntClass[0].classList.add('open');
@@ -35,7 +35,7 @@ function Header() {
                 <img src={isHome ? logo : blackLogo} alt="Logo" className="header__logo" />
                 <ul className="header__div">
                     {loggedIn ?
-                        <><li onClick={() => handleLogout()} className={isHome ? "header__link header__button" : "header__link header__button-dark"} >{user.firstName}<img className={isHome ? "header__button-image" : "header__button-image-dark"} src={exitImg} alt="Log out" /></li>
+                        <><li onClick={() => handleLogout()} className={isHome ? "header__link header__button" : "header__link header__button-dark"} >{currentUser.firstName}<img className={isHome ? "header__button-image" : "header__button-image-dark"} src={exitImg} alt="Log out" /></li>
                             <li><NavLink to="/saved-news" end className={isHome ? "header__link header__button header__active-white " : "header__link header__button selected-dark"}>saved news</NavLink></li>
                             <li><NavLink className={isHome ? "header__link header__button header__active-white selected" : "header__link header__button "} to="/" end>
                                 Home

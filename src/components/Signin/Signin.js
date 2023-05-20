@@ -1,36 +1,76 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 
-const Signin = ({ isLoading, handleLogin ,popupState,setPopupState}) => {
+const Signin = ({ isLoading, handleLogin, popupState, setPopupState, isFormValid, setIsFormValid }) => {
     
+    const [valledError, setValidError] = useState("")
     const [userLoginInfo, setUserLoginInfo] = useState({
         email: "",
         password: "",
     });
+    const [validationForUserEmail, setValidationForUserEmail] =useState("")
+    const [validationForUserPassword, setValidationForUserPassword] =useState("")
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const { email, password } = userLoginInfo;
-        handleLogin(email, password);
+            setIsFormValid(true)
+            handleLogin(email, password);
+        
     }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserLoginInfo({
-            ...userLoginInfo,
-            [name]: value,
-        });
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setUserLoginInfo((prevUserInfo) => ({
+            ...prevUserInfo,
+            [name]: value
+        }));
+
+        if (name === 'email') {
+            const emailPattern = /^[^\s@]{4,}@[^\s@]+\.[^\s@]+$/;
+            // Email validation regex pattern
+            const isEmailValid = value.trim() !== '' && emailPattern.test(value);
+            setIsFormValid(isEmailValid);
+
+            if (!isEmailValid) {
+                setValidationForUserEmail("Please add a correct email");
+            } else {
+                setValidationForUserEmail(""); // Clear the validation message
+            }
+        } else if (name === 'password') {
+            const isPasswordValid = value.trim() !== '';
+            setIsFormValid(isPasswordValid);
+
+            if (!isPasswordValid) {
+                setValidationForUserPassword("Password can't be empty");
+            } else {
+                setValidationForUserPassword(""); // Clear the validation message
+            }
+        }
     };
+    const onClose = () =>
+        setPopupState({
+            ...popupState,
+            signin: false,
+        })
+
+
+    
+    useEffect(() => {
+        if ( validationForUserPassword !== "" || validationForUserEmail !== "") {
+            setIsFormValid(false)
+        }
+    }, [])
 
     return (
 
-        <PopupWithForm isOpen={popupState.signin}
-            onClose={() => setPopupState({
-         ...popupState,
-         signin: false,
-             })
-         }
+        <PopupWithForm
+            isFormValid={isFormValid}
+            setIsFormValid={setIsFormValid}
+        isOpen={popupState.signin}
+            onClose={onClose}
             title="sign in"
             name="signin"
             buttonText={`${isLoading ? "Connecting..." : "Sign in"}`}
@@ -46,6 +86,7 @@ const Signin = ({ isLoading, handleLogin ,popupState,setPopupState}) => {
                 value={userLoginInfo.email}
                 onChange={handleChange}
                 required />
+            <p className="popup__input login-form__input-vakidation">{validationForUserEmail}</p>
             <label className="signin-label"
                 htmlFor="password" >
                 Password </label>
@@ -57,6 +98,7 @@ const Signin = ({ isLoading, handleLogin ,popupState,setPopupState}) => {
                 value={userLoginInfo.password}
                 onChange={handleChange}
                 required />
+            <p className="popup__input login-form__input-vakidation">{validationForUserPassword}</p>
         </PopupWithForm>
 
     );

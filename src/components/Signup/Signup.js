@@ -3,7 +3,7 @@ import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { usePopup } from "../../contexts/PopupContext";
 
 
-const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
+const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen, isFormValid, setIsFormValid }) => {
     const { popupState, setPopupState } = usePopup();
 
     const [userLoginInfo, setUserLoginInfo] = useState({
@@ -11,6 +11,9 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
         password: "",
         userName: ""
     });
+    const [validationForUserEmail, setValidationForUserEmail] = useState("");
+    const [validationForUserPassword, setValidationForUserPassword] = useState("");
+    const [validationForUserName, setValidationForUserName] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -18,22 +21,60 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
         handleRegister(email, password, username);
     }
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUserLoginInfo({
-            ...userLoginInfo,
-            [name]: value,
-        });
-    };
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setUserLoginInfo((prevUserInfo) => ({
+            ...prevUserInfo,
+            [name]: value
+        }));
 
-    return ( <PopupWithForm isOpen = { popupState.signup }
-        onClose = {
-            () =>
-            setPopupState({
-                ...popupState,
-                signup: false,
-            })
+        if (name === 'email') {
+            const emailPattern = /^[^\s@]{4,}@[^\s@]+\.[^\s@]+$/;
+            // Email validation regex pattern
+            const isEmailValid = value.trim() !== '' && emailPattern.test(value);
+            setIsFormValid(isEmailValid);
+
+            if (!isEmailValid) {
+                setValidationForUserEmail("Please add a correct email");
+            } else {
+                setValidationForUserEmail(""); // Clear the validation message
+            }
+        } else if (name === 'password') {
+            const isPasswordValid = value.trim() !== '';
+            setIsFormValid(isPasswordValid);
+
+            if (!isPasswordValid) {
+                setValidationForUserPassword("Password can't be empty");
+            } else {
+                setValidationForUserPassword(""); // Clear the validation message
+            }
+        } else if (name === 'username') {
+            const isNameValid = value.trim() !== '';
+            setIsFormValid(isNameValid);
+
+            if (!isNameValid) {
+                setValidationForUserName("Name can't be empty");
+            } else {
+                setValidationForUserPassword(""); // Clear the validation message
+            }
         }
+}
+    const onClose = () =>
+setPopupState({
+    ...popupState,
+    signup: false,
+})
+        useEffect(()=>{
+            if (validationForUserName !== "" || validationForUserPassword !== "" || validationForUserEmail !== ""){
+                setIsFormValid(false)
+            }
+        }, [ setIsFormValid])
+
+    return ( <PopupWithForm
+        isFormValid={isFormValid}
+        setIsFormValid={setIsFormValid}
+        isOpen = { popupState.signup }
+      onClose={onClose}
         title = "sign up"
         name = "signup"
         buttonText = { `${isLoading ? "Connecting..." : "sign up"}` }
@@ -48,6 +89,7 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
         value = { userLoginInfo.email }
         onChange = { handleChange }
         required />
+        <p className="popup__input login-form__input-vakidation">{validationForUserEmail}</p>
         <label className = "signin-label"
         htmlFor = "password" >
         Password </label> <input type = "password"
@@ -58,6 +100,7 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
         value = { userLoginInfo.password }
         onChange = { handleChange }
         required />
+        <p className="popup__input login-form__input-vakidation">{validationForUserPassword}</p>
         <label className = "signin-label"
         htmlFor = "username" >
         Username </label> <input type = "text"
@@ -68,6 +111,7 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
         defaultValue = { userLoginInfo.userName || "" }
         onChange = { handleChange }
         required />
+        <p className="popup__input login-form__input-vakidation">{validationForUserName}</p>
         </PopupWithForm>
     );
 }

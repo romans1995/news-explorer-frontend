@@ -8,15 +8,13 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 const SavedNews = (props) => {
     const { isHome } = useHome();
     const [userArticles, setUserArticles] = useState([]);
-    const { user, token } = useAuth();
+    const { currentUser } = useAuth();
     const [articlesLength, setArticlesLength] = useState(0)
     const  api  = useArticles();
 
     useEffect(() => {
         if (isHome) {
-            newLocal().then(response =>{
-                console.log("savedNews",response);
-         
+            newLocal().then(response => {
                 setUserArticles(response);
                 setArticlesLength(response.data.length || "0");
             }).then(keywordSelect).catch((error) => {
@@ -30,8 +28,9 @@ const SavedNews = (props) => {
 
     const newLocal = async () => {
         try {
-            const articles = await api.getSavedArticles(token);
+            const articles = await api.getSavedArticles(localStorage.token);
             return articles;
+           
 
         } catch {
             return (err) => { console.log(err) }
@@ -82,7 +81,7 @@ const SavedNews = (props) => {
         <main className="savedNews">
             <section className='savedNews__text'>
                 <p className="savedNews__P">saved articles</p>
-                {!isHome && userArticles !== [] && <><h2 className='savedNews__hsecond'>{user.firstName},you have {articlesLength} saved articles</h2><p className='savedNews__keywords'>By keywords: <strong>{keywordSelect()}</strong></p></>}
+                {!isHome && userArticles !== [] && <><h2 className='savedNews__hsecond'>{currentUser.firstName},you have {articlesLength} saved articles</h2><p className='savedNews__keywords'>By keywords: <strong>{keywordSelect()}</strong></p></>}
             </section>
             <section className='NewsCardList-container'>
                 <NewsCardList userArticles={userArticles} setUserArticles={setUserArticles} handleDeleteArticleFunc={handleDeleteArticleFunc} articlesLength={articlesLength }/>

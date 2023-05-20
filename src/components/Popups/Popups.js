@@ -8,11 +8,12 @@ import { useAuth } from "../../contexts/AuthContext";
 
 
 const Popups = ({ signIn, signUp }) => {
-    const [userEmail, setUserEmail] = useState([]);
+    
     const { popupState, setPopupState } = usePopup();
-    const { setLoggedIn, setToken } = useAuth();
+    const { setLoggedIn, setToken, checkTocken } = useAuth();
     const [tooltipStatus, setTooltipStatus] = useState(false);
     const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+    const [isFormValid, setIsFormValid] = useState(false);
 
 
     const handleLogin = (email, password) => {
@@ -22,11 +23,12 @@ const Popups = ({ signIn, signUp }) => {
                     setLoggedIn(true);
                     localStorage.setItem('token', res.token);
                     setToken(res.token);
-                    setUserEmail(email);
+                    checkTocken(res.token)
                     setPopupState({
                         ...popupState,
                         signin: false,
                     });
+                    window.location.reload();
                 } else {
                     setTooltipStatus(false);
                     setIsInfoTooltipOpen(true);
@@ -42,15 +44,15 @@ const Popups = ({ signIn, signUp }) => {
     const handleRegister = (email, password,name) => {
         signUp(email, password, name)
             .then(res => {
-                console.log(res.data, "register")
                 if (res.data._id) {
                     setTooltipStatus(true);
-                    localStorage.setItem('email', email)
+                    localStorage.setItem('email', email);
                     setPopupState({
                         ...popupState,
                         signup: false,
                         successPopup: true
                     });
+                    
                 } else {
                     setTooltipStatus(false);
                     
@@ -61,8 +63,8 @@ const Popups = ({ signIn, signUp }) => {
     
     return (
         <>
-            <Signup handleRegister={handleRegister} popupState={popupState}  />
-            <Signin handleLogin={handleLogin} popupState={popupState} setPopupState={setPopupState} />
+            <Signup handleRegister={handleRegister} popupState={popupState} isFormValid={isFormValid} setIsFormValid ={setIsFormValid} />
+            <Signin handleLogin={handleLogin} popupState={popupState} setPopupState={setPopupState} isFormValid={isFormValid} setIsFormValid={setIsFormValid} />
             <Nav popupState={popupState} />
             <SuccessPopup />
         </>

@@ -16,7 +16,6 @@ const SearchResolts = (props) =>{
                     {<h3 className="searchResult-title">Search results</h3>}
                     <div className="searchResult__container">
                         {props.searchResults.length !== 0 ? props.searchResults.map((card,key) => {
-                            console.log("key",key , card)
                             return <div id={key + idUnq} key={key + idUnq} className="searchResult__cards-listItem">
                                 <NewsCard card={card} />
                             </div>

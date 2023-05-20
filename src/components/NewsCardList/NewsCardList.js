@@ -1,11 +1,8 @@
 // import { useArticles } from "../../contexts/ArticlesContext";
-import { useEffect } from "react";
+import React from "react";
 import NewsCard from "../NewsCard/NewsCard";
 
 const NewsCardList = ({ userArticles, setUserArticles, handleDeleteArticleFunc, articlesLength } ) => {
-   useEffect(()=>{
-       console.log("NewsCardList", userArticles)
-   }, [userArticles])
     
     return (
         <div className="NewsCardList">

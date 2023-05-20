@@ -7,8 +7,8 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [loggedIn, setLoggedIn] = useState(false);
-    const [token, setToken] = useState(localStorage.getItem('token'));
-    const [user, setUser] = useState({
+    const [token, setToken] = useState();
+    const [currentUser, setCurrentUser] = useState({
         email: '',
         firstName: '',
         userName: '',
@@ -19,16 +19,18 @@ const AuthProvider = ({ children }) => {
     
     const handleLogout = () => {
         setLoggedIn(false);
-        setUser({});
+        setCurrentUser({});
         localStorage.clear();
+        setToken(localStorage.getItem('token'));
         history('/');
     };
+
     useEffect(() => {
-        if (token) {
+        if (localStorage.getItem('token')) {
             checkTocken(token).then(res => {
                 if (res._id) {
                     setLoggedIn(true);
-                    setUser({email:res.email,firstName:res.name,id:res._id})
+                    setCurrentUser({email:res.email,firstName:res.name,id:res._id})
                     
                 }
             }).catch((err) => {
@@ -38,7 +40,7 @@ const AuthProvider = ({ children }) => {
             })
         }
     }, [history, token])
-    return (<AuthContext.Provider value={{ loggedIn, setLoggedIn, setToken, user, handleLogout, token }}>
+    return (<AuthContext.Provider value={{ loggedIn, setLoggedIn, setToken, currentUser, handleLogout, token, checkTocken }}>
         {children}
     </AuthContext.Provider>
     );
