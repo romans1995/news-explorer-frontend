@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 
 
-const Signin = ({ isLoading, handleLogin, popupState, setPopupState }) => {
+const Signin = ({ isLoading, handleLogin, popupState, setPopupState, errMessage, setErrMessage }) => {
 
     
     
@@ -82,8 +82,10 @@ const Signin = ({ isLoading, handleLogin, popupState, setPopupState }) => {
     return (
 
         <PopupWithForm
+            errMessage={errMessage}
             validation={validation}
             isFormValid={isFormValid}
+            setErrMessage={setErrMessage}
         isOpen={popupState.signin}
             setIsFormValid={setIsFormValid}
             onClose={onClose}

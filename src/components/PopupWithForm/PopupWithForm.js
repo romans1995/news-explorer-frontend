@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Popup from "../Popup/Popup";
 import { usePopup } from '../../contexts/PopupContext';
 const PopupWithForm = (props) => {
-
+console.log(props)
 
     const popupContext = usePopup();
 
@@ -18,12 +18,11 @@ const PopupWithForm = (props) => {
                 signin:true
             });
         }
-       
-        
+        props.setErrMessage("");
     };
     
     return (
-        <Popup title={props.title} isOpen={props.isOpen} name={props.name} onClose={props.onClose}>
+        <Popup errMessage={props.errMessage} title={props.title} isOpen={props.isOpen} name={props.name} onClose={props.onClose}>
             <form
                 action="submit"
                 className={`popup__inputs-container popup__inputs-${props.name}`}

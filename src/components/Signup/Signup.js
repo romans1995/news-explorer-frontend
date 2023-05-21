@@ -4,7 +4,7 @@ import { usePopup } from "../../contexts/PopupContext";
 import { signUp } from "../../utils/MainApi";
 
 
-const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
+const Signup = ({ isLoading, handleRegister, setErrMessage, errMessage }) => {
     const [isFormValid, setIsFormValid] = useState(false);
     const { popupState, setPopupState } = usePopup();
 
@@ -82,6 +82,8 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
     })
 
     return (<PopupWithForm
+        setErrMessage={setErrMessage}
+        errMessage={errMessage}
         validation={validation}
         isFormValid={isFormValid}
         isOpen={popupState.signup}
@@ -120,7 +122,7 @@ const Signup = ({ isLoading, handleRegister, isInfoTooltipOpen }) => {
                 id="username"
                 className="popup__input login-form__input"
                 placeholder="user name"
-                defaultValue={userLoginInfo.userName}
+            defaultValue={userLoginInfo.username}
                 onChange={handleChange}
                 required />
         {validation.username && <p className="popup__input login-form__input-vakidation">{validation.username}</p>}
