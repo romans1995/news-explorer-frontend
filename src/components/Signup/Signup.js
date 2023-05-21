@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import { usePopup } from "../../contexts/PopupContext";
-import { signUp } from "../../utils/MainApi";
-
 
 const Signup = ({ isLoading, handleRegister, setErrMessage, errMessage }) => {
     const [isFormValid, setIsFormValid] = useState(false);

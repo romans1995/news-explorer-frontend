@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useHome } from '../../contexts/HomeContext';
 import { useArticles } from '../../contexts/ArticlesContext'
@@ -10,10 +10,10 @@ const SavedNews = (props) => {
     const [userArticles, setUserArticles] = useState([]);
     const { currentUser } = useAuth();
     const [articlesLength, setArticlesLength] = useState(0)
-    const  api  = useArticles();
+    const api = useArticles();
 
-    
-    const keywordSelect = () => {
+
+    const keywordSelect = useCallback(() => {
         if (userArticles) {
             const keyW = userArticles.data ? userArticles.data.map((card) => card.keyword) : userArticles.map((card) => card.keyword);
             let uniqKeywords = [];
@@ -25,8 +25,7 @@ const SavedNews = (props) => {
                 }
             }
             if (uniqKeywords.length > 3) {
-                return `${uniqKeywords[0] + " "}, ${uniqKeywords[1] + " "}, and ${uniqKeywords.length - 2
-                    } others`;
+                return `${uniqKeywords[0] + " "}, ${uniqKeywords[1] + " "}, and ${uniqKeywords.length - 2} others`;
             } else {
                 const keywordElements = uniqKeywords.map((keyword) => {
                     return keyword + " ";
@@ -34,21 +33,21 @@ const SavedNews = (props) => {
                 return keywordElements + " ";
             }
         } else {
-            return "None"
+            return "None";
         }
-    }
+    }, [userArticles]);
 
     const handleDeleteArticleFunc = async (article) => {
         try {
-            await api.deleteArticle(article._id).then((newArticle)=>{
+            await api.deleteArticle(article._id).then((newArticle) => {
                 const newArticles = userArticles.data?.filter(
-                    (correntArticle) => correntArticle._id !==article._id)||
+                    (correntArticle) => correntArticle._id !== article._id) ||
                     userArticles.filter(
                         correntArticle => correntArticle._id !== article._id
                     );
-                setUserArticles({data: newArticles });
+                setUserArticles({ data: newArticles });
                 keywordSelect();
-                setArticlesLength(articlesLength-1);
+                setArticlesLength(articlesLength - 1);
             })
         } catch (err) {
             console.log(err);
@@ -59,13 +58,11 @@ const SavedNews = (props) => {
             try {
                 const articles = await api.getSavedArticles(localStorage.token);
                 return articles;
-
-
             } catch {
                 return (err) => { console.log(err) }
             }
         }
-        
+
         if (isHome) {
             newLocal().then(response => {
                 setUserArticles(response);
@@ -77,7 +74,7 @@ const SavedNews = (props) => {
         }
 
 
-    },[api, isHome, userArticles, userArticles.length]);
+    }, [api, isHome, userArticles, keywordSelect]);
 
     return (
         <main className="savedNews">
@@ -86,7 +83,7 @@ const SavedNews = (props) => {
                 {!isHome && userArticles !== [] && <><h2 className='savedNews__hsecond'>{currentUser.firstName},you have {articlesLength} saved articles</h2><p className='savedNews__keywords'>By keywords: <strong>{keywordSelect()}</strong></p></>}
             </section>
             <section className='NewsCardList-container'>
-                <NewsCardList userArticles={userArticles} setUserArticles={setUserArticles} handleDeleteArticleFunc={handleDeleteArticleFunc} articlesLength={articlesLength }/>
+                <NewsCardList userArticles={userArticles} setUserArticles={setUserArticles} handleDeleteArticleFunc={handleDeleteArticleFunc} articlesLength={articlesLength} />
             </section>
         </main>
     );

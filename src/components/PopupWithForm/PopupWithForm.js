@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Popup from "../Popup/Popup";
 import { usePopup } from '../../contexts/PopupContext';
 const PopupWithForm = (props) => {
