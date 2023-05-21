@@ -77,7 +77,7 @@ const SavedNews = (props) => {
         }
 
 
-    },[api, isHome, userArticles, userArticles.data?.length, userArticles.length]);
+    },[api, isHome, userArticles, userArticles.length]);
 
     return (
         <main className="savedNews">

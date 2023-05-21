@@ -11,9 +11,9 @@ const Popups = ({ signIn, signUp }) => {
     
     const { popupState, setPopupState } = usePopup();
     const { setLoggedIn, setToken, checkTocken } = useAuth();
-    const [ setTooltipStatus] = useState(false);
-    const [ setIsInfoTooltipOpen] = useState(false);
-    const [isFormValid, setIsFormValid] = useState(false);
+   
+    const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+
 
 
     const handleLogin = (email, password) => {
@@ -30,13 +30,13 @@ const Popups = ({ signIn, signUp }) => {
                     });
                     window.location.reload();
                 } else {
-                    setTooltipStatus(false);
+                    
                     setIsInfoTooltipOpen(true);
                 }
             })
             .catch((err) => {
                 console.log(err);
-                setTooltipStatus(false);
+                
                 setIsInfoTooltipOpen(true);
             });
     }
@@ -45,7 +45,7 @@ const Popups = ({ signIn, signUp }) => {
         signUp(email, password, name)
             .then(res => {
                 if (res.data._id) {
-                    setTooltipStatus(true);
+                    
                     localStorage.setItem('email', email);
                     setPopupState({
                         ...popupState,
@@ -53,18 +53,15 @@ const Popups = ({ signIn, signUp }) => {
                         successPopup: true
                     });
                     
-                } else {
-                    setTooltipStatus(false);
-                    
-                }
+                } 
             }).catch(err =>
-                 console.log(err)).finally(() => setIsInfoTooltipOpen(false));
+                 console.log(err));
     }
     
     return (
         <>
-            <Signup handleRegister={handleRegister} popupState={popupState} isFormValid={isFormValid} setIsFormValid ={setIsFormValid} />
-            <Signin handleLogin={handleLogin} popupState={popupState} setPopupState={setPopupState} isFormValid={isFormValid} setIsFormValid={setIsFormValid} />
+            <Signup handleRegister={handleRegister} popupState={popupState} />
+            <Signin handleLogin={handleLogin} popupState={popupState} setPopupState={setPopupState}/>
             <Nav popupState={popupState} />
             <SuccessPopup />
         </>

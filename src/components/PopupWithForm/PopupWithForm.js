@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Popup from "../Popup/Popup";
 import { usePopup } from '../../contexts/PopupContext';
 const PopupWithForm = (props) => {
+
+
     const popupContext = usePopup();
 
     let popupToOpen = props.name === 'signin' ? 'signup' : 'signin';
     const handleRedirect = () => {
+        props.setIsFormValid(false)
         popupContext.closeAllPopups();
         popupContext.openPopup(popupToOpen);
         if (popupToOpen === 'signin'){
@@ -15,12 +18,10 @@ const PopupWithForm = (props) => {
                 signin:true
             });
         }
-        props.setIsFormValid(false)
+       
         
     };
-    const disableButton = !props.isFormValid ? `popup__submit-button popup__submit-button-${props.name}::disabled` : `popup__submit-button popup__submit-button-${props.name}`;
-
- 
+    
     return (
         <Popup title={props.title} isOpen={props.isOpen} name={props.name} onClose={props.onClose}>
             <form
@@ -32,7 +33,7 @@ const PopupWithForm = (props) => {
                 {props.children}
                 <button
                     disabled={!props.isFormValid}
-                    className={disableButton}
+                    className={`popup__submit-button popup__submit-button-${props.name}`}
                     type="submit"
                 >
                     {props.buttonText}
