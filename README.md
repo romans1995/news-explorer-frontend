@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# News Expolorer Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a frontend part of the News Explorer project. It is a single page application that allows users to search for news articles by keyword and save their favorite articles to their personal account. User can also delete saved articles from their account.
+The frontend of this application is built using React and TypeScript. State management is implemented using Redux Toolkit as well as Context API.
 
-In the project directory, you can run:
+## Technologies
 
-### `npm start`
+- HTML
+- CSS
+- JavaScript
+- React
+- Context API
+- Hooks
+- React Router
+- Webpack
+- Babel
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Screenshot Demo
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Nav Bar when not logged in:
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Nav Bar when user is logged in:
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Popup Forms for Signin in and Signing up:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Form Validation on auth forms:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Search Results:
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+News card can be saved:
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+Saved Articles area for logged in users:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Features
 
-### Advanced Configuration
+- Search for news articles by keyword
+- Register and login to personal account
+- Save articles to personal account
+- Delete articles from personal account
+- View articles in a separate window
+- Programatically navigate between pages
+- Dynamically render content
+- Frontend consumes data from the News Explorer API (RESTful API)
+- Responsive design
+- Form validation
+- Error handling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Live Demo
 
-### Deployment
+Deployed fullstack app (GCP):[https://newsexplorer-r.chickenkiller.com/](https://newsexplorer-r.chickenkiller.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To run this project locally:
+
+1. clone backend repo
+2. clone frontend repo
+3. install dependencies in both repos
+4. run backend server with command `npm run dev`
+5. run frontend server with command `npm run start`
+6. change the `baseUrl` in the frontend repo `src/utils/MainApi.js` to `http://localhost:3000`
