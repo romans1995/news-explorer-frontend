@@ -16,7 +16,7 @@ const SearchForm = () => {
     const inputRef = useRef(null);
     let filter = "";
 
-    
+    // trigrs the show more button 
     const onClickShowmore = async (event) => {
         event.preventDefault();
         setShowMore(true);
@@ -25,7 +25,7 @@ const SearchForm = () => {
         setCounter(counter + 3);
         setShowMore(false);
     }
-
+// trigers the api and gets a 100 articles 
     const handleSearch = async (event) => {
         event.preventDefault();
         const inputValue = inputRef.current && inputRef.current.value;

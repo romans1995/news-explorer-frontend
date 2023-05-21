@@ -1,5 +1,11 @@
 # News Expolorer Frontend
-
+<p>
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">
+        <img style="border:0;width:88px;height:31px"
+            src="https://jigsaw.w3.org/css-validator/images/vcss"
+            alt="Right CSS!" />
+    </a>
+</p>
 ## Overview
 
 This is a frontend part of the News Explorer project. It is a single page application that allows users to search for news articles by keyword and save their favorite articles to their personal account. User can also delete saved articles from their account.
