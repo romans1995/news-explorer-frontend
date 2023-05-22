@@ -5,11 +5,11 @@ import { useAuth } from '../../contexts/AuthContext';
 
 const Nav = () => {
     const elemntClass = document.getElementsByClassName("header__navburger");
-    const { openPopup, popupState, closeAllPopups } = usePopup();
+    const { openPopup, popupState, closeAllPopups, setPopupState } = usePopup();
     const { loggedIn, handleLogout } = useAuth();
 
     const turnOffNav = () =>{
-        popupState.nav = false;
+       setPopupState(false);
         elemntClass[0].classList.remove('open');
     }
     return (

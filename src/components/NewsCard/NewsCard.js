@@ -54,9 +54,8 @@ const NewsCard = ({ card, userArticles, setUserArticles, handleDeleteArticleFunc
     const handleArticleClick = (e) => {
            // Check if a button or its child element was clicked
         const isButtonClicked = e.target.closest("button");
-
         if (!isButtonClicked) {
-            window.open(card.url, "_blank"); // Redirect to the URL
+            card.url ? window.open(card.url, "_blank") : window.open(card.link, "_blank"); // Redirect to the URL
         }
     };
 

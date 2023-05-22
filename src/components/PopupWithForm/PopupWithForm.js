@@ -2,8 +2,6 @@ import React from "react";
 import Popup from "../Popup/Popup";
 import { usePopup } from '../../contexts/PopupContext';
 const PopupWithForm = (props) => {
-console.log(props)
-
     const popupContext = usePopup();
 
     let popupToOpen = props.name === 'signin' ? 'signup' : 'signin';

@@ -9,7 +9,7 @@
 ## Overview
 
 This is a frontend part of the News Explorer project. It is a single page application that allows users to search for news articles by keyword and save their favorite articles to their personal account. User can also delete saved articles from their account.
-The frontend of this application is built using React and TypeScript. State management is implemented using Redux Toolkit as well as Context API.
+The frontend of this application is built using React and TypeScript. State management is implemented using Context API.
 
 ## Technologies
 

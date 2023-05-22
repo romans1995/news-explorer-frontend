@@ -72,10 +72,9 @@ const Signup = ({ isLoading, handleRegister, setErrMessage, errMessage }) => {
             setIsFormValid(false);
         }
     };
-  
-   
+
+
     useEffect(() => {
-        console.log("signup", userLoginInfo)
         validateForm();
     })
 
@@ -92,37 +91,40 @@ const Signup = ({ isLoading, handleRegister, setErrMessage, errMessage }) => {
         buttonText={`${isLoading ? "Connecting..." : "sign up"}`}
         onSubmit={handleSubmit} >
         < label className="signin-label"
-            htmlFor="email" >
+            htmlFor="email-signup" >
             Email </label> <input type="email"
-                name="email"
-                id="email"
+            name="email"
+                id="email-signup"
                 className="popup__input login-form__input"
                 placeholder="Email"
                 value={userLoginInfo.email}
                 onChange={handleChange}
-                required />
+                required
+            autoComplete="true" />
         {validation.email && <p className="popup__input login-form__input-vakidation">{validation.email}</p>}
         <label className="signin-label"
-            htmlFor="password" >
+            htmlFor="password-signup" >
             Password </label> <input type="password"
                 name="password"
-                id="password"
+                id="password-signup"
                 className="popup__input login-form__input"
                 placeholder="Password"
                 value={userLoginInfo.password}
                 onChange={handleChange}
-                required />
+                required 
+            autoComplete="true" />
         {validation.password && <p className="popup__input login-form__input-vakidation">{validation.password}</p>}
         <label className="signin-label"
-            htmlFor="username" >
+            htmlFor="username-signup" >
             Username </label> <input type="text"
                 name="username"
-                id="username"
+                id="username-signup"
                 className="popup__input login-form__input"
                 placeholder="user name"
-            defaultValue={userLoginInfo.username}
+                defaultValue={userLoginInfo.username}
                 onChange={handleChange}
-                required />
+                required 
+            autoComplete="true" />
         {validation.username && <p className="popup__input login-form__input-vakidation">{validation.username}</p>}
     </PopupWithForm>
     );
