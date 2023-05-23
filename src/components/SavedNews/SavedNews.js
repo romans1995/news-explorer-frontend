@@ -18,7 +18,7 @@ const SavedNews = (props) => {
             const keyW = userArticles.data ? userArticles.data.map((card) => card.keyword) : userArticles.map((card) => card.keyword);
             let uniqKeywords = [];
             for (let i = 0; i < keyW.length; i++) {
-                if (keyW[0] === keyW[i] && uniqKeywords.includes(keyW[i])) {
+                if (uniqKeywords.includes(keyW[i])) {
                     continue;
                 } else {
                     uniqKeywords.push(keyW[i]);
@@ -64,9 +64,10 @@ const SavedNews = (props) => {
         }
 
         if (isHome) {
+            console.log(articlesLength)
             newLocal().then(response => {
                 setUserArticles(response);
-                setArticlesLength(response.data.length || "0");
+                setArticlesLength(response.data?.length || "0");
             }).then(keywordSelect).catch((error) => {
                 console.log(error);
             });
@@ -74,7 +75,7 @@ const SavedNews = (props) => {
         }
 
 
-    }, [api, isHome, userArticles, keywordSelect]);
+    }, [api, articlesLength, isHome, keywordSelect, userArticles]);
 
     return (
         <main className="savedNews">

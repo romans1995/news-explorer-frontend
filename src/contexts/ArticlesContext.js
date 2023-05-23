@@ -2,6 +2,7 @@ import {api} from '../utils/NewsApi';
 import { saveArticle, deleteArticle, getSavedArticles } from '../utils/MainApi';
 const { createContext, useContext } = require('react');
 
+
 const ArticlesContext = createContext();
 
 // data

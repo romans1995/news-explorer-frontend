@@ -13,7 +13,10 @@ const SearchForm = () =>{
 
     
     // filteredArr is all the result 
-    const filteredArr = data.filter(subArr => Object.values(subArr).some(val => val === searchTerm));
+    const filteredArr = data.filter(subArr => {
+        console.log("filteredArr is being called");
+        return Object.values(subArr).some(val => val === searchTerm);
+    });
     let filter = filteredArr.length > 3 && showMore === false ? filteredArr.slice(0, 3) : filteredArr;
     // let filter = "";
     

@@ -56,9 +56,9 @@ const SearchForm = () => {
                 }}>
                 <h1 className="search__title">What's going on in the world?</h1>
                 <p className="search__pargrap ">Find the latest news on any topic and save them in your personal account.</p>
-                <form className="search__input" id="search__input-id">
+                <form onSubmit={handleSearch} className="search__input" id="search__input-id">
                     <input id="search" ref={inputRef} name="search" className="search__input-text" type="text" autoComplete="true" placeholder="Enter topic" />
-                    <button onClick={handleSearch} className="search__input-button">Search</button>
+                    <button type="submit" className="search__input-button">Search</button>
                 </form>
             </section>
 

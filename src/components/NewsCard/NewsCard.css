@@ -92,7 +92,7 @@ button.NewsCard-img-icon>img:hover {
 }
 
 button.NewsCard-img-icon>img {
-    filter: invert(40%) sepia(100%) saturate(0%) hue-rotate(86deg) brightness(102%) contrast(102%);
+    /* filter: invert(40%) sepia(100%) saturate(0%) hue-rotate(86deg) brightness(102%) contrast(102%); */
     cursor: pointer;
 }
 
@@ -170,5 +170,11 @@ button.news-card__tootltip {
     }
     p.NewsCard-text-tags {
         margin-left: 5px;
+    }
+    p.NewsCard-text-date {
+        margin: 20px 8px 0;
+    }
+    p.NewsCard-text-text {
+        max-width: none;
     }
 }
