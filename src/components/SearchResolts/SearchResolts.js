@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import NewsCard from "../NewsCard/NewsCard";
 import NotFound from "../NotFound/NotFound";
 import { useHome } from '../../contexts/HomeContext';
@@ -12,8 +12,9 @@ const SearchResolts = (props) =>{
     const { isHome } = useHome();
     const [allSavedArticles, setAllSavedArticles] = useState([]);
     const api = useArticles();
-    const savedArticlesSet = new Set(allSavedArticles?.data?.map(element => element.link));
-
+    // const savedArticlesSet = new Set(allSavedArticles?.data?.map(element => element.link));
+   
+    const [savedArticlesSet, setSavedArticlesSet] = useState(new Set());
     
     // const unSaveArticleFunc = async () => {
     //     try {
@@ -44,6 +45,8 @@ const SearchResolts = (props) =>{
                 try {
                     const articles = await api.getSavedArticles(localStorage.getItem('token'));
                     setAllSavedArticles(articles);
+                    const articleSet = new Set(articles.data?.map(element => element.link));
+                    setSavedArticlesSet(articleSet);
                 } catch (error) {
                     console.log(error);
                     // Handle the error, e.g., show an error message or set a default value for allSavedArticles
@@ -54,7 +57,7 @@ const SearchResolts = (props) =>{
 
             
         }
-    }, []);
+    }, [api, isHome]);
     return(
        <section className="searchResults">
             {props.searchTerm.length === 0 ?

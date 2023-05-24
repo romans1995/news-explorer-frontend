@@ -5,7 +5,6 @@ import savedIcon from '../../images/saved.svg';
 import { useAuth } from '../../contexts/AuthContext';
 import { useArticles } from '../../contexts/ArticlesContext';
 import { useHome } from '../../contexts/HomeContext';
-import { debounce } from "lodash";
 
 const changeDate = (apiDate) => {
     const date = new Date(apiDate);
@@ -49,32 +48,33 @@ const NewsCard = ({ savedArticlesSet,searchTerm, card, userArticles, setUserArti
     const saveArticleFunc = async () => {
         try {
             await api.saveArticle(myDifiedArticle, token);
+            savedArticlesSet.add(card.id);
             setArticleSaved(true);
-        } catch (err) {
-            console.log(err);
-        }
-    }
- 
-    const unSaveArticleFunc = async () => {
-        try {
-            const { url } = card;
 
-            if (savedArticlesSet.has(url)) {
-                const deletePromises = allSavedArticles.data
-                    .filter(element => element.link === url)
-                    .map(element => api.deleteArticle(element._id));
-
-                await Promise.all(deletePromises);
-                savedArticlesSet.delete(card);
-                setArticleSaved(false);
-            }
+            // Fetch the updated saved articles
+            const updatedArticles = await api.getSavedArticles(token);
+            setAllSavedArticles(updatedArticles);
+            console.log("allSavedArticles", allSavedArticles)
         } catch (err) {
             console.log(err);
         }
     };
-  
-    const debouncedUnSaveArticleFunc = debounce(unSaveArticleFunc, 500);
-
+    const unSaveArticleFunc = async (url) => {
+        try{
+            const privet = allSavedArticles.data.find(element =>element.link === url)
+            console.log(privet)
+            await api.deleteArticle(privet._id);
+            console.log("allSavedArticles",allSavedArticles)
+            savedArticlesSet.delete(url);
+            setArticleSaved(false);
+            const updatedArticles = await api.getSavedArticles(token);
+            setAllSavedArticles(updatedArticles);
+        }catch(err){
+            console.log(err);
+        }
+        
+    }
+ 
 const handleDelete = async (e) => {
     e.preventDefault();
     // Call the delete function passed from the parent component
@@ -111,7 +111,7 @@ return (
                     alt="Remove from saved"
                     onMouseEnter={onHoverMessage}
                     onMouseLeave={handleMouseLeave}
-                    onClick={articleSaved ? debouncedUnSaveArticleFunc : saveArticleFunc}
+                    onClick={articleSaved ?()=> unSaveArticleFunc(card.url) : saveArticleFunc}
                     disabled={!loggedIn} /></button>
                     : <button className=" NewsCard-img-icon NewsCard-img-save"><img src={trashIcon} alt="save" title="delete Article" onMouseEnter={onHoverMessage} onMouseLeave={handleMouseLeave} onClick={handleDelete} /></button>}
             </div>
